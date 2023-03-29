@@ -13,3 +13,5 @@ Add yourself as a contributor to this project as a Markdown link that links your
 ## Mentors
 
 ## Code of Conduct Contacts
+
+- [Ayu Adiati](https://github.com/adiati98) 🤩
