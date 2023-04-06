@@ -24,12 +24,12 @@ export function Layout() {
 					<NavLink to="#" className="Nav-link">
 						Home
 					</NavLink>
-					<a href="#" className="Nav-link">
+					<NavLink to="#" className="Nav-link">
 						List
-					</a>
-					<a href="#" className="Nav-link">
+					</NavLink>
+					<NavLink to="#" className="Nav-link">
 						Add Item
-					</a>
+					</NavLink>
 				</nav>
 			</div>
 		</>
