@@ -6,6 +6,12 @@ import { AddItem, Home, Layout, List } from './views';
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
 
+/*
+->We need to allow users to start new lists, so they can save the things they need to buy. We need to generate a unique token, save it to localstorage and show the list view to the user.
+->For the users already having a token will automatically redirect to the list view.
+->For the users not having a token, a button in the home component will allow them to create a new list by generating a token and saving it to localstorage along with redirecting to the list view.
+*/
+
 export function App() {
 	const [data, setData] = useState([]);
 	/**
