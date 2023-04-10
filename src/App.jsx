@@ -5,6 +5,7 @@ import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
+import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 /*
 ->We need to allow users to start new lists, so they can save the things they need to buy. We need to generate a unique token, save it to localstorage and show the list view to the user.
@@ -14,6 +15,7 @@ import { useStateWithStorage } from './utils';
 
 export function App() {
 	const [data, setData] = useState([]);
+
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
@@ -24,10 +26,11 @@ export function App() {
 	 * have tokens), and use `setListToken` when you allow a user
 	 * to create and join a new list.
 	 */
-	const [listToken, setListToken] = useStateWithStorage(
-		'my test list',
-		'tcl-shopping-list-token',
-	);
+	const [listToken, setListToken] = useStateWithStorage(null);
+
+	function newToken() {
+		setListToken(generateToken());
+	}
 
 	useEffect(() => {
 		if (!listToken) return;
@@ -57,7 +60,7 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home />} />
+					<Route index element={<Home onClick={newToken} />} />
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
