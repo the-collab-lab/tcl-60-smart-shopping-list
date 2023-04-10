@@ -7,10 +7,19 @@ export function AddItem() {
 	});
 
 	function handleChange(event) {
-		event.preventDefault();
+		const { name, value, type } = event.target;
 
-		console.log('Something changed');
+		setFormData((prevFormData) => {
+			return {
+				...prevFormData,
+				[name]: value,
+			};
+		});
 	}
+	console.log(formData);
+
+	//handle submit function here
+
 	return (
 		<>
 			<p>
@@ -28,6 +37,7 @@ export function AddItem() {
 					<label>
 						<input
 							id="7days"
+							name="daysUntilNextPurchase"
 							type="radio"
 							value="7"
 							checked={formData.daysUntilNextPurchase === '7'}
@@ -38,10 +48,10 @@ export function AddItem() {
 					<label>
 						<input
 							id="14days"
+							name="daysUntilNextPurchase"
 							type="radio"
 							value="14"
 							checked={formData.daysUntilNextPurchase === '14'}
-							name=""
 							onChange={handleChange}
 						/>
 						Kind of soon
@@ -49,10 +59,10 @@ export function AddItem() {
 					<label>
 						<input
 							id="30days"
+							name="daysUntilNextPurchase"
 							type="radio"
 							value="30"
 							checked={formData.daysUntilNextPurchase === '30'}
-							name="soon"
 							onChange={handleChange}
 						/>
 						Not so soon
