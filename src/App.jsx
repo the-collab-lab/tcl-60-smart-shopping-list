@@ -26,7 +26,10 @@ export function App() {
 	 * have tokens), and use `setListToken` when you allow a user
 	 * to create and join a new list.
 	 */
-	const [listToken, setListToken] = useStateWithStorage(null);
+	const [listToken, setListToken] = useStateWithStorage(
+		null,
+		'tcl-shopping-list-token',
+	);
 
 	function newToken() {
 		setListToken(generateToken());
