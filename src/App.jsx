@@ -36,8 +36,9 @@ export function App() {
 	}
 
 	useEffect(() => {
-		if (!listToken) return;
-
+		if (!listToken) {
+			localStorage.setItem('listToken', JSON.stringify(listToken));
+		}
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database, then calls a callback function with
