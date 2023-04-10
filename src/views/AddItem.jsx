@@ -5,9 +5,11 @@ export function AddItem() {
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
+	const [submissionStatus, setSubmissionStatus] = React.useState('');
+	// const [isSubmitted, setIsSubmitted] = React.useState(false)
 
 	function handleChange(event) {
-		const { name, value, type } = event.target;
+		const { name, value } = event.target;
 
 		setFormData((prevFormData) => {
 			return {
@@ -20,18 +22,34 @@ export function AddItem() {
 
 	//handle submit function here
 
+	function handleSubmit(event) {
+		event.preventDefault();
+		if (formData.itemName !== '' && formData.daysUntilNextPurchase !== '') {
+			console.log('SUbmitted');
+			setSubmissionStatus('Form submitted');
+			// setIsSubmitted(true)
+		} else {
+			setSubmissionStatus('invalid Inputs');
+		}
+
+		// setTimeout(() => setIsSubmitted(false), 5000)
+	}
+
 	return (
 		<>
 			<p>
 				Hello from the <code>/add-item</code> page!
 			</p>
-			<form>
-				<input
-					type="text"
-					onChange={handleChange}
-					name="itemName"
-					value={formData.itemName}
-				/>
+			<form onSubmit={handleSubmit}>
+				<label>
+					Item name:
+					<input
+						type="text"
+						onChange={handleChange}
+						name="itemName"
+						value={formData.itemName}
+					/>
+				</label>
 
 				<div>
 					<label>
@@ -68,7 +86,12 @@ export function AddItem() {
 						Not so soon
 					</label>
 				</div>
-
+				{submissionStatus === 'Form submitted' && (
+					<p>Item has been added to list</p>
+				)}
+				{submissionStatus === 'invalid Inputs' && (
+					<p>Please enter valid inputs</p>
+				)}
 				<button>Submit</button>
 			</form>
 		</>
