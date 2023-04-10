@@ -24,6 +24,41 @@ export function AddItem() {
 					value={formData.itemName}
 				/>
 
+				<div>
+					<label>
+						<input
+							id="7days"
+							type="radio"
+							value="7"
+							checked={formData.daysUntilNextPurchase === '7'}
+							onChange={handleChange}
+						/>
+						Soon
+					</label>
+					<label>
+						<input
+							id="14days"
+							type="radio"
+							value="14"
+							checked={formData.daysUntilNextPurchase === '14'}
+							name=""
+							onChange={handleChange}
+						/>
+						Kind of soon
+					</label>
+					<label>
+						<input
+							id="30days"
+							type="radio"
+							value="30"
+							checked={formData.daysUntilNextPurchase === '30'}
+							name="soon"
+							onChange={handleChange}
+						/>
+						Not so soon
+					</label>
+				</div>
+
 				<button>Submit</button>
 			</form>
 		</>
