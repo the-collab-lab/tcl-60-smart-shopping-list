@@ -20,13 +20,21 @@ export function AddItem() {
 		});
 	}
 
+	//TODO: import listToken from local session storage to replace the mock listToken value
+	const listToken = 'apple-banana-car'; //mock listToken value
+
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
 		console.log(formData);
+		const convertedFormData = {
+			itemName: formData.itemName,
+			daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
+		};
 		if (formData.itemName && formData.daysUntilNextPurchase) {
 			try {
-				await addItem(1, formData);
+				console.log(convertedFormData);
+				await addItem(listToken, convertedFormData);
 				setSubmissionStatus('Item has been added to the list');
 			} catch (err) {
 				console.log(err);
@@ -82,8 +90,10 @@ export function AddItem() {
 					/>
 					<label htmlFor="thirtyDays">Not so soon</label>
 				</div>
-				{showMessage ? <p>{submissionStatus}</p> : null}
-				<button>Submit</button>
+				<div>
+					{showMessage ? <p>{submissionStatus}</p> : null}
+					<button>Submit</button>
+				</div>
 			</form>
 		</>
 	);
