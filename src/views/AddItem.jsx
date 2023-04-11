@@ -1,4 +1,5 @@
 import React from 'react';
+import { addItem } from '../api/firebase';
 
 export function AddItem() {
 	const [formData, setFormData] = React.useState({
@@ -18,16 +19,19 @@ export function AddItem() {
 			};
 		});
 	}
-	console.log(formData);
 
-	function handleSubmit(event) {
+	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
+		console.log(formData);
 		if (formData.itemName && formData.daysUntilNextPurchase) {
-			console.log('Submitted');
-			setSubmissionStatus('Item has been added to the list');
+			try {
+				await addItem(1, formData);
+				setSubmissionStatus('Item has been added to the list');
+			} catch (err) {
+				console.log(err);
+			}
 		} else {
-			console.log('Fail');
 			setSubmissionStatus('Please enter valid inputs');
 		}
 
@@ -78,8 +82,10 @@ export function AddItem() {
 					/>
 					<label htmlFor="thirtyDays">Not so soon</label>
 				</div>
-				{showMessage && <p>{submissionStatus}</p>}
-				<button>Submit</button>
+				<div>
+					{showMessage && <p>{submissionStatus}</p>}
+					<button>Submit</button>
+				</div>
 			</form>
 		</>
 	);
