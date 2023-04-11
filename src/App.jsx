@@ -36,9 +36,7 @@ export function App() {
 	}
 
 	useEffect(() => {
-		if (!listToken) {
-			localStorage.setItem('listToken', JSON.stringify(listToken));
-		}
+		if (!listToken) return;
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database, then calls a callback function with
@@ -64,7 +62,7 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home onClick={newToken} />} />
+					<Route index element={<Home newToken={newToken} />} />
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
