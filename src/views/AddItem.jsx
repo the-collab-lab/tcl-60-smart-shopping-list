@@ -27,12 +27,13 @@ export function AddItem() {
 		event.preventDefault();
 		setShowMessage(true);
 		console.log(formData);
-		const convertedFormData = {
-			itemName: formData.itemName,
-			daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
-		};
+
 		if (formData.itemName && formData.daysUntilNextPurchase) {
 			try {
+				const convertedFormData = {
+					itemName: formData.itemName,
+					daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
+				};
 				console.log(convertedFormData);
 				await addItem(listToken, convertedFormData);
 				setSubmissionStatus('Item has been added to the list');
