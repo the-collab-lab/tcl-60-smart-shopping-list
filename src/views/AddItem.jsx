@@ -78,7 +78,7 @@ export function AddItem() {
 					/>
 					<label htmlFor="thirtyDays">Not so soon</label>
 				</div>
-				{showMessage && <p>{submissionStatus}</p>}
+				{showMessage ? <p>{submissionStatus}</p> : null}
 				<button>Submit</button>
 			</form>
 		</>
