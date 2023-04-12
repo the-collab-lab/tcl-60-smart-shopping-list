@@ -1,20 +1,19 @@
 import './Home.css';
 import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 
-export function Home({ newToken }) {
+export function Home({ setNewToken, token }) {
 	const navigate = useNavigate();
-	const tokenFromStorage = localStorage.getItem('tcl-shopping-list-token');
-	function handleClick() {
-		newToken();
-		navigate('/list');
-	}
-	if (tokenFromStorage) navigate('/list');
+	useEffect(() => {
+		if (token) navigate('/list');
+	}, [token, navigate]);
+
 	return (
 		<div className="Home">
 			<p>
 				Hello from the home (<code>/</code>) page!
 			</p>
-			<button onClick={handleClick}>New List</button>
+			<button onClick={setNewToken}>New List</button>
 		</div>
 	);
 }

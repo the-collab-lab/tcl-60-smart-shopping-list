@@ -31,12 +31,16 @@ export function App() {
 		'tcl-shopping-list-token',
 	);
 
-	function newToken() {
+	function setNewToken() {
 		setListToken(generateToken());
 	}
 
 	useEffect(() => {
-		if (!listToken) return;
+		if (!listToken) {
+			const tokenFromStorage = localStorage.getItem('tcl-shopping-list-token');
+			if (tokenFromStorage) setListToken(tokenFromStorage);
+			else return;
+		}
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database, then calls a callback function with
@@ -56,13 +60,16 @@ export function App() {
 			/** Finally, we update our React state. */
 			setData(nextData);
 		});
-	}, [listToken]);
+	}, [listToken, setListToken]);
 
 	return (
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home newToken={newToken} />} />
+					<Route
+						index
+						element={<Home setNewToken={setNewToken} token={listToken} />}
+					/>
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
