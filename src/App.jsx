@@ -36,11 +36,7 @@ export function App() {
 	}
 
 	useEffect(() => {
-		if (!listToken) {
-			const tokenFromStorage = localStorage.getItem('tcl-shopping-list-token');
-			if (tokenFromStorage) setListToken(tokenFromStorage);
-			else return;
-		}
+		if (!listToken) return;
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database, then calls a callback function with
