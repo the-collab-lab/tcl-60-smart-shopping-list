@@ -37,6 +37,12 @@ export function AddItem() {
 				console.log(convertedFormData);
 				await addItem(listToken, convertedFormData);
 				setSubmissionStatus('Item has been added to the list');
+
+				// Clear the form after successful submission
+				setFormData({
+					itemName: '',
+					daysUntilNextPurchase: '',
+				});
 			} catch (err) {
 				console.log(err);
 			}
