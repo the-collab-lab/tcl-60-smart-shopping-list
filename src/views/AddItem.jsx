@@ -20,8 +20,8 @@ export function AddItem() {
 		});
 	}
 
-	//TODO: import listToken from local session storage to replace the mock listToken value
-	const listToken = 'apple-banana-car'; //mock listToken value
+	const listToken = localStorage.getItem('tcl-shopping-list-token');
+	console.log(`list token is ${listToken}`);
 
 	async function handleSubmit(event) {
 		event.preventDefault();
