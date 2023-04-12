@@ -7,24 +7,13 @@ import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
-/*
-->We need to allow users to start new lists, so they can save the things they need to buy. We need to generate a unique token, save it to localstorage and show the list view to the user.
-->For the users already having a token will automatically redirect to the list view.
-->For the users not having a token, a button in the home component will allow them to create a new list by generating a token and saving it to localstorage along with redirecting to the list view.
-*/
-
 export function App() {
 	const [data, setData] = useState([]);
 
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
-	 *
-	 * `listToken` is `my test list` by default so you can see the list
-	 * of items that was prepopulated for this project.
-	 * You'll later set it to `null` by default (since new users do not
-	 * have tokens), and use `setListToken` when you allow a user
-	 * to create and join a new list.
+	 * This hook handles saving to and retrieving from localStorage.
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
 		null,

@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 
 export function Home({ setNewToken, token }) {
 	const navigate = useNavigate();
+	// useEffect will watch for changes to the token and will redirect whenever it exists
 	useEffect(() => {
 		if (token) navigate('/list');
 	}, [token, navigate]);
