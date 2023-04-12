@@ -21,12 +21,10 @@ export function AddItem() {
 	}
 
 	const listToken = localStorage.getItem('tcl-shopping-list-token');
-	console.log(`list token is ${listToken}`);
 
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
-		console.log(formData);
 
 		if (formData.itemName && formData.daysUntilNextPurchase) {
 			try {
@@ -34,7 +32,6 @@ export function AddItem() {
 					itemName: formData.itemName,
 					daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
 				};
-				console.log(convertedFormData);
 				await addItem(listToken, convertedFormData);
 				setSubmissionStatus('Item has been added to the list');
 
