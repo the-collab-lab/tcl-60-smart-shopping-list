@@ -7,7 +7,9 @@ export function Home({ setNewToken, token }) {
 	// useEffect will watch for changes to the token and will redirect whenever it exists
 	useEffect(() => {
 		if (token) navigate('/list');
-	}, [token, navigate]);
+		// disable warning that navigate should be a dependency
+		// eslint-disable-next-line
+	}, [token]);
 
 	return (
 		<div className="Home">
