@@ -41,7 +41,7 @@ export function AddItem() {
 					daysUntilNextPurchase: '',
 				});
 			} catch (err) {
-				console.log(err);
+				setSubmissionStatus('An error encountered');
 			}
 		} else {
 			setSubmissionStatus('Please enter valid inputs');
