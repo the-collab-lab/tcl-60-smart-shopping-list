@@ -5,8 +5,10 @@ export function List({ data }) {
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
+				{/*TODO: Input Field */}
 			</p>
 			<ul>
+				{/*TODO: Filter */}
 				{data.map((item, index) => (
 					<ListItem key={index} name={item.name} />
 				))}
