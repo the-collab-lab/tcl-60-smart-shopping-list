@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { addItem } from '../api/firebase';
 
 export function AddItem() {
-	const [formData, setFormData] = React.useState({
+	const [formData, setFormData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
-	const [submissionStatus, setSubmissionStatus] = React.useState('');
-	const [showMessage, setShowMessage] = React.useState(false);
+	const [submissionStatus, setSubmissionStatus] = useState('');
+	const [showMessage, setShowMessage] = useState(false);
 
 	function handleChange(event) {
 		const { name, value } = event.target;
