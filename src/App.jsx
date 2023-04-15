@@ -5,27 +5,27 @@ import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
+import { generateToken } from '@the-collab-lab/shopping-list-utils';
 
 export function App() {
 	const [data, setData] = useState([]);
+
 	/**
 	 * Here, we're using a custom hook to create `listToken` and a function
 	 * that can be used to update `listToken` later.
-	 *
-	 * `listToken` is `my test list` by default so you can see the list
-	 * of items that was prepopulated for this project.
-	 * You'll later set it to `null` by default (since new users do not
-	 * have tokens), and use `setListToken` when you allow a user
-	 * to create and join a new list.
+	 * This hook handles saving to and retrieving from localStorage.
 	 */
 	const [listToken, setListToken] = useStateWithStorage(
-		'my test list',
+		null,
 		'tcl-shopping-list-token',
 	);
 
+	function setNewToken() {
+		setListToken(generateToken());
+	}
+
 	useEffect(() => {
 		if (!listToken) return;
-
 		/**
 		 * streamListItems` takes a `listToken` so it can commuinicate
 		 * with our database, then calls a callback function with
@@ -51,7 +51,10 @@ export function App() {
 		<Router>
 			<Routes>
 				<Route path="/" element={<Layout />}>
-					<Route index element={<Home />} />
+					<Route
+						index
+						element={<Home setNewToken={setNewToken} token={listToken} />}
+					/>
 					<Route path="/list" element={<List data={data} />} />
 					<Route path="/add-item" element={<AddItem />} />
 				</Route>
