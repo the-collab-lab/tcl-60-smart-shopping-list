@@ -45,7 +45,7 @@ export function App() {
 			/** Finally, we update our React state. */
 			setData(nextData);
 		});
-	}, [listToken, setListToken]);
+	}, [listToken]);
 
 	return (
 		<Router>
