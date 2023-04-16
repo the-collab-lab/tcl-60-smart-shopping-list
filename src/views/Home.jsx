@@ -17,6 +17,7 @@ export function Home({ setNewToken, token }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<button onClick={setNewToken}>New List</button>
+			{/* Search list form */}
 		</div>
 	);
 }
