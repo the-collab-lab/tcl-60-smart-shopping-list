@@ -2,24 +2,28 @@ import { ListItem } from '../components';
 import { useState } from 'react';
 
 export function List({ data }) {
-	const [filter, setFilter] = useState();
+	const [query, setQuery] = useState('');
 	const onChange = (e) => {
-		setFilter(e.target.value);
+		setQuery(e.target.value);
 	};
 	return (
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
 				<div>
-					<label htmlFor="filter">Filter your list</label>
-					<input id="filter" value={filter} onChange={onChange} name="filter" />
+					<label htmlFor="query">Filter your list</label>
+					<input id="query" value={query} onChange={onChange} name="query" />
 				</div>
 			</p>
 			<ul>
 				{/*TODO: Filter */}
-				{data.map((item, index) => (
-					<ListItem key={index} name={item.name} />
-				))}
+				{data
+					.filter((item) =>
+						item.name.toLowerCase().includes(query.toLowerCase()),
+					)
+					.map((item) => (
+						<ListItem key={item.id} name={item.name} />
+					))}
 			</ul>
 		</>
 	);
