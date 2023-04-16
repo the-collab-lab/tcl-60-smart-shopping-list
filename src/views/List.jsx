@@ -13,10 +13,10 @@ export function List({ data }) {
 				<div>
 					<label htmlFor="query">Filter your list</label>
 					<input id="query" value={query} onChange={onChange} name="query" />
+					{query && <button onClick={() => setQuery('')}>Clear</button>}
 				</div>
 			</p>
 			<ul>
-				{/*TODO: Filter */}
 				{data
 					.filter((item) =>
 						item.name.toLowerCase().includes(query.toLowerCase()),
