@@ -3,8 +3,8 @@ import { useState } from 'react';
 
 export function List({ data }) {
 	const [query, setQuery] = useState('');
-	const onChange = (e) => {
-		setQuery(e.target.value);
+	const handleChange = (event) => {
+		setQuery(event.target.value);
 	};
 	return (
 		<>
@@ -13,7 +13,7 @@ export function List({ data }) {
 			</p>
 			<div>
 				<label htmlFor="query">Filter your list</label>
-				<input id="query" value={query} onChange={onChange} name="query" />
+				<input id="query" value={query} onChange={handleChange} name="query" />
 				{query && <button onClick={() => setQuery('')}>Clear</button>}
 			</div>
 			<ul>
