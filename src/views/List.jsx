@@ -9,13 +9,14 @@ export function List({ data }) {
 	return (
 		<>
 			<p>
-				Hello from the <code>/list</code> page!
-				<div>
-					<label htmlFor="query">Filter your list</label>
-					<input id="query" value={query} onChange={onChange} name="query" />
-					{query && <button onClick={() => setQuery('')}>Clear</button>}
-				</div>
+				{' '}
+				Hello from the <code>/list</code> page!{' '}
 			</p>
+			<div>
+				<label htmlFor="query">Filter your list</label>
+				<input id="query" value={query} onChange={onChange} name="query" />
+				{query && <button onClick={() => setQuery('')}>Clear</button>}
+			</div>
 			<ul>
 				{data
 					.filter((item) =>
