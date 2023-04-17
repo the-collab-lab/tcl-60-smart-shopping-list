@@ -1,10 +1,4 @@
-import {
-	collection,
-	onSnapshot,
-	addDoc,
-	getDoc,
-	query,
-} from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -90,13 +84,9 @@ export async function deleteItem() {
 
 export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
+	console.log('list collection ref', listCollectionRef);
 	console.log(typeof listId);
-	// const q = query(listCollectionRef);
-	// const querySnapshot = await getDocs(q);
-	try {
-		const existingList = await getDoc(listCollectionRef, undefined);
-		console.log(existingList);
-	} catch (err) {
-		console.log(err);
-	}
+	const existingList = await getDocs(listCollectionRef, undefined);
+
+	return existingList.empty ? false : true;
 }
