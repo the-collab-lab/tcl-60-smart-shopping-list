@@ -14,7 +14,7 @@ export function List({ data }) {
 			<div>
 				<label htmlFor="query">Filter your list</label>
 				<input id="query" value={query} onChange={handleChange} name="query" />
-				{query && <button onClick={() => setQuery('')}>Clear</button>}
+				{query ? <button onClick={() => setQuery('')}>Clear</button> : null}
 			</div>
 			<ul>
 				{data
