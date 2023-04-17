@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { checkItem } from '../api/firebase';
 
-export function Home({ setNewToken, token }) {
+export function Home({ setNewToken, token, setToken }) {
 	const [existingToken, setExistingToken] = useState('');
+	const [joiningError, setJoiningError] = useState(false);
 	const navigate = useNavigate();
 	// useEffect will watch for changes to the token and will redirect whenever it exists
 	useEffect(() => {
@@ -18,10 +19,24 @@ export function Home({ setNewToken, token }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		checkItem(existingToken);
+		checkItem(existingToken)
+			.then((shoppingList) => {
+				if (shoppingList) {
+					setToken(existingToken);
+					console.log('LIST EXISTS');
+				} else {
+					console.log('NO LIST');
+					setJoiningError(true);
+				}
+			})
+			.catch((error) => {
+				setJoiningError(true);
+				console.log(error);
+			});
+
 		console.log('SUBMITTED');
 	}
-	console.log(existingToken);
+
 	return (
 		<div className="Home">
 			<p>
@@ -38,6 +53,7 @@ export function Home({ setNewToken, token }) {
 					onChange={handleTokenChange}
 				/>
 				<button>Join existing list</button>
+				{joiningError && <p>No such list exist</p>}
 			</form>
 		</div>
 	);
