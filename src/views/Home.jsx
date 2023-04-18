@@ -19,10 +19,11 @@ export function Home({ setNewToken, token, setToken }) {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		checkItem(existingToken)
+		const trimmedToken = existingToken.trim();
+		checkItem(trimmedToken)
 			.then((shoppingList) => {
 				if (shoppingList) {
-					setToken(existingToken);
+					setToken(trimmedToken);
 				} else {
 					setJoiningError(true);
 				}
@@ -31,6 +32,7 @@ export function Home({ setNewToken, token, setToken }) {
 				setJoiningError(true);
 				console.log(error);
 			});
+		setExistingToken('');
 	}
 
 	return (
