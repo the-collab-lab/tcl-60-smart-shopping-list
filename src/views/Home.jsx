@@ -23,9 +23,7 @@ export function Home({ setNewToken, token, setToken }) {
 			.then((shoppingList) => {
 				if (shoppingList) {
 					setToken(existingToken);
-					console.log('LIST EXISTS');
 				} else {
-					console.log('NO LIST');
 					setJoiningError(true);
 				}
 			})
@@ -33,8 +31,6 @@ export function Home({ setNewToken, token, setToken }) {
 				setJoiningError(true);
 				console.log(error);
 			});
-
-		console.log('SUBMITTED');
 	}
 
 	return (
@@ -43,7 +39,6 @@ export function Home({ setNewToken, token, setToken }) {
 				Hello from the home (<code>/</code>) page!
 			</p>
 			<button onClick={setNewToken}>New List</button>
-			{/* Search list form */}
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="existingToken">Existing token</label>
 				<input

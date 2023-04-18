@@ -84,9 +84,6 @@ export async function deleteItem() {
 
 export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
-	console.log('list collection ref', listCollectionRef);
-	console.log(typeof listId);
 	const existingList = await getDocs(listCollectionRef, undefined);
-
 	return existingList.empty ? false : true;
 }
