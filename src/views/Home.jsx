@@ -42,14 +42,16 @@ export function Home({ setNewToken, token, setToken }) {
 			</p>
 			<button onClick={setNewToken}>New List</button>
 			<form onSubmit={handleSubmit}>
-				<label htmlFor="existingToken">Existing token</label>
+				<label htmlFor="existingToken">Enter existing token:</label>
+				<br />
 				<input
 					type="text"
 					id="existingToken"
 					value={existingToken}
 					onChange={handleTokenChange}
 				/>
-				<button>Join existing list</button>
+				<br />
+				<button className="existing-btn">Join existing list</button>
 				{joiningError && <p>No such list exist</p>}
 			</form>
 		</div>
