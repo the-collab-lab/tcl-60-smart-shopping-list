@@ -1,4 +1,4 @@
-import { collection, onSnapshot, addDoc } from 'firebase/firestore';
+import { collection, onSnapshot, addDoc, getDocs } from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -80,4 +80,10 @@ export async function deleteItem() {
 	 * to delete an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+}
+
+export async function checkItem(listId) {
+	const listCollectionRef = collection(db, listId);
+	const existingList = await getDocs(listCollectionRef, undefined);
+	return existingList.empty ? false : true;
 }
