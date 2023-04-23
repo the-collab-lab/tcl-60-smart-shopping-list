@@ -1,15 +1,29 @@
 import { ListItem } from '../components';
+import { useState } from 'react';
 
 export function List({ data, token }) {
+	const [query, setQuery] = useState('');
+	const handleChange = (event) => {
+		setQuery(event.target.value);
+	};
 	return (
 		<>
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
+			<div>
+				<label htmlFor="query">Filter your list</label>
+				<input id="query" value={query} onChange={handleChange} name="query" />
+				{query ? <button onClick={() => setQuery('')}>Clear</button> : null}
+			</div>
 			<ul>
-				{data.map((item, index) => (
-					<ListItem key={index} name={item.name} />
-				))}
+				{data
+					.filter((item) =>
+						item.name.toLowerCase().includes(query.toLowerCase()),
+					)
+					.map((item) => (
+						<ListItem key={item.id} name={item.name} />
+					))}
 			</ul>
 			<div>
 				<p>
