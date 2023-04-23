@@ -1,7 +1,7 @@
 import { ListItem } from '../components';
 import { useState } from 'react';
 
-export function List({ data }) {
+export function List({ data, token }) {
 	const [query, setQuery] = useState('');
 	const handleChange = (event) => {
 		setQuery(event.target.value);
@@ -25,6 +25,12 @@ export function List({ data }) {
 						<ListItem key={item.id} name={item.name} />
 					))}
 			</ul>
+			<div>
+				<p>
+					Use the token <em style={{ textDecoration: 'underline' }}>{token}</em>{' '}
+					to share your shopping list
+				</p>
+			</div>
 		</>
 	);
 }
