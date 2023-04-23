@@ -1,6 +1,6 @@
 import { ListItem } from '../components';
 
-export function List({ data }) {
+export function List({ data, token }) {
 	return (
 		<>
 			<p>
@@ -11,6 +11,12 @@ export function List({ data }) {
 					<ListItem key={index} name={item.name} />
 				))}
 			</ul>
+			<div>
+				<p>
+					Use the token <em style={{ textDecoration: 'underline' }}>{token}</em>{' '}
+					to share your shopping list
+				</p>
+			</div>
 		</>
 	);
 }
