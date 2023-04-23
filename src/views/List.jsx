@@ -11,6 +11,7 @@ export function List({ data, token }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
+			{/* welcome message */}
 			<div>
 				<label htmlFor="query">Filter your list</label>
 				<input id="query" value={query} onChange={handleChange} name="query" />
