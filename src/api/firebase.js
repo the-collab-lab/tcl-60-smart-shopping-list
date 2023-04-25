@@ -1,4 +1,12 @@
-import { collection, onSnapshot, addDoc, getDocs } from 'firebase/firestore';
+import {
+	collection,
+	onSnapshot,
+	addDoc,
+	getDocs,
+	getDoc,
+	updateDoc,
+	doc,
+} from 'firebase/firestore';
 import { db } from './config';
 import { getFutureDate } from '../utils';
 
@@ -72,10 +80,15 @@ export async function updateItem(listId, itemId, check, dateLastPurchased) {
 	 * to update an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
-	console.log(listId);
-	console.log(itemId);
-	console.log(check);
-	console.log(dateLastPurchased);
+	const itemRef = doc(db, listId, itemId);
+	const itemSnap = await getDoc(itemRef);
+
+	let totalPurchases = itemSnap.data().totalPurchases;
+
+	await updateDoc(itemRef, {
+		totalPurchases: totalPurchases + 1,
+		dateLastPurchased: new Date(),
+	});
 }
 
 export async function deleteItem() {
