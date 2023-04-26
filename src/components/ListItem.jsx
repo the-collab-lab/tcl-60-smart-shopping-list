@@ -17,10 +17,10 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		}
 	}, [dateLastPurchased]);
 
-	const handlecheck = async (err) => {
+	const handlecheck = async () => {
 		const listId = localStorage.getItem('tcl-shopping-list-token');
 		setChecked((ischeck) => {
-			updateItem(listId, itemId, !ischeck, dateLastPurchased);
+			updateItem(listId, itemId);
 			return !ischeck;
 		});
 	};
