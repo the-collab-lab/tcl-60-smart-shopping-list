@@ -14,7 +14,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		const diff = currentTime - purchasedonDate;
 		if (diff > 1000 * 60 * 60 * 24) {
 			setChecked(false);
-		}
+		} else setChecked(true);
 	}, [dateLastPurchased]);
 
 	const handlecheck = async () => {

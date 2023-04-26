@@ -80,7 +80,6 @@ export async function updateItem(listId, itemId) {
 	 */
 	const itemRef = doc(db, listId, itemId);
 	const itemSnap = await getDoc(itemRef);
-
 	let totalPurchases = itemSnap.data().totalPurchases;
 
 	await updateDoc(itemRef, {
