@@ -74,11 +74,9 @@ export async function addItem(listId, { itemName, daysUntilNextPurchase }) {
 	});
 }
 
-export async function updateItem(listId, itemId, check, dateLastPurchased) {
+export async function updateItem(listId, itemId) {
 	/**
-	 * TODO: Fill this out so that it uses the correct Firestore function
-	 * to update an existing item. You'll need to figure out what arguments
-	 * this function must accept!
+	 * Firestore function to update an existing item.
 	 */
 	const itemRef = doc(db, listId, itemId);
 	const itemSnap = await getDoc(itemRef);
