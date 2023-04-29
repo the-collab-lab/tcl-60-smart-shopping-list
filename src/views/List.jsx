@@ -22,7 +22,12 @@ export function List({ data, token }) {
 						item.name.toLowerCase().includes(query.toLowerCase()),
 					)
 					.map((item) => (
-						<ListItem key={item.id} name={item.name} />
+						<ListItem
+							key={item.id}
+							name={item.name}
+							itemId={item.id}
+							dateLastPurchased={item.dateLastPurchased}
+						/>
 					))}
 			</ul>
 			<div>
