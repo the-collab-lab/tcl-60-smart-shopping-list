@@ -13,7 +13,7 @@ export function List({ data, token }) {
 			<p>
 				Hello from the <code>/list</code> page!
 			</p>
-			{!data.length ? (
+			{!data?.length ? (
 				<div>
 					<p>
 						Your list is empty. Click the add item button to start your list.
