@@ -6,7 +6,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [checked, setChecked] = useState(false);
 
 	useEffect(() => {
-		const date = new Date();
 		let purchasedonDate = dateLastPurchased
 			? dateLastPurchased.toDate()
 			: dateLastPurchased;
