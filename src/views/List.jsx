@@ -15,7 +15,9 @@ export function List({ data, token }) {
 			</p>
 			{!data.length ? (
 				<div>
-					<p>Your list is empty click the add item button to start your list</p>
+					<p>
+						Your list is empty. Click the add item button to start your list.
+					</p>
 					<button onClick={() => navigate('/add-item')}>Add Item</button>
 				</div>
 			) : (
