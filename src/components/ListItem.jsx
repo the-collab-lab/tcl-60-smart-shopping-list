@@ -1,7 +1,7 @@
 import { updateItem } from '../api/firebase';
 import './ListItem.css';
 import { useState, useEffect } from 'react';
-//TODO: mark as purchased feature
+//TODO: compute date next purchased
 export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [checked, setChecked] = useState(false);
 
