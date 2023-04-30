@@ -56,6 +56,7 @@ export function AddItem() {
 				Hello from the <code>/add-item</code> page!
 			</p>
 			<form onSubmit={handleSubmit}>
+				{/*  TODO: prevent users from entering blank/duplicate items  */}
 				<label htmlFor="itemName">Item name:</label>
 				<br />
 				<input
