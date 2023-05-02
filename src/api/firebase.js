@@ -8,8 +8,7 @@ import {
 	doc,
 } from 'firebase/firestore';
 import { db } from './config';
-import { getFutureDate } from '../utils';
-import { getDaysBetweenDates } from '../utils';
+import { getFutureDate, getDaysBetweenDates } from '../utils';
 import { calculateEstimate } from '@the-collab-lab/shopping-list-utils';
 
 /**
