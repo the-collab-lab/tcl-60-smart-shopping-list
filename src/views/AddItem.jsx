@@ -1,13 +1,20 @@
 import React, { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem() {
+export function AddItem({ data }) {
 	const [formData, setFormData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
 	const [submissionStatus, setSubmissionStatus] = useState('');
 	const [showMessage, setShowMessage] = useState(false);
+
+	const itemregex = /[^a-zA-Z0-9]+/g;
+
+	const Notify = (itemName) => {
+		const regItem = itemName.toLowerCase().replace(itemregex, '');
+		setSubmissionStatus(` ${regItem} is already present in the list`);
+	};
 
 	function handleChange(event) {
 		const { name, value } = event.target;
@@ -25,6 +32,19 @@ export function AddItem() {
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
+
+		const matchItem = data.some((item) => {
+			return (
+				item.name &&
+				item.name.toLowerCase().replaceAll(itemregex, '') ===
+					formData.itemName.toLowerCase().replaceAll(itemregex, '')
+			);
+		});
+
+		if (matchItem) {
+			Notify(formData.itemName);
+			return;
+		}
 
 		if (formData.itemName && formData.daysUntilNextPurchase) {
 			try {
