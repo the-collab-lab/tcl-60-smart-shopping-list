@@ -87,7 +87,6 @@ export async function updateItem(listId, itemId) {
 
 	function calculateDateNextPurchased() {
 		const dateLastUpdated = dateLastPurchased || dateCreated;
-		console.log(dateLastUpdated.toDate());
 		const previousEstimate = getDaysBetweenDates(
 			dateNextPurchased.toDate(),
 			dateLastUpdated.toDate(),
@@ -105,18 +104,6 @@ export async function updateItem(listId, itemId) {
 				) *
 					86400000,
 		);
-		console.log(calculatedDateNextPurchased);
-		console.log({
-			totalPurchases,
-			dateLastPurchased,
-			dateCreated,
-			dateNextPurchased,
-		});
-		console.log(
-			previousEstimate,
-			daysSinceLastPurchase,
-			calculatedDateNextPurchased,
-		);
 		return calculatedDateNextPurchased;
 	}
 
@@ -124,12 +111,6 @@ export async function updateItem(listId, itemId) {
 		totalPurchases: totalPurchases + 1,
 		dateLastPurchased: new Date(),
 		dateNextPurchased: calculateDateNextPurchased(),
-	});
-	console.log({
-		totalPurchases,
-		dateLastPurchased,
-		dateCreated,
-		dateNextPurchased,
 	});
 }
 
