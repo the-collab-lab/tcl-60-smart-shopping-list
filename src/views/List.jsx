@@ -1,18 +1,21 @@
 import { ListItem } from '../components';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 export function List({ data, token }) {
 	const navigate = useNavigate();
+	useEffect(() => {
+		if (!token) navigate('/');
+		// disable warning that navigate should be a dependency
+		// eslint-disable-next-line
+	}, [token]);
 	const [query, setQuery] = useState('');
 	const handleChange = (event) => {
 		setQuery(event.target.value);
 	};
+	if (!token) return <p></p>;
 	return (
 		<>
-			<p>
-				Hello from the <code>/list</code> page!
-			</p>
 			{!data?.length ? (
 				<div>
 					<p>

@@ -50,7 +50,7 @@ export function App() {
 	return (
 		<Router>
 			<Routes>
-				<Route path="/" element={<Layout />}>
+				<Route path="/" element={<Layout token={listToken} />}>
 					<Route
 						index
 						element={

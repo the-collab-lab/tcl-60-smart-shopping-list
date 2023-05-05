@@ -1,7 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addItem } from '../api/firebase';
+import { useNavigate } from 'react-router-dom';
 
 export function AddItem({ data, token }) {
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (!token) navigate('/');
+		// disable warning that navigate should be a dependency
+		// eslint-disable-next-line
+	}, [token]);
 	const [formData, setFormData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: '',
@@ -62,12 +69,9 @@ export function AddItem({ data, token }) {
 
 		setTimeout(() => setShowMessage(false), 3000);
 	}
-
+	if (!token) return <p></p>;
 	return (
 		<>
-			<p>
-				Hello from the <code>/add-item</code> page!
-			</p>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item name:</label>
 				<br />
