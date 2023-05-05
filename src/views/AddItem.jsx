@@ -39,14 +39,18 @@ export function AddItem({ data }) {
 			setSubmissionStatus(
 				`${formData.itemName} is already present in the list`,
 			);
-		} else if (formData.itemName && formData.daysUntilNextPurchase) {
+		} else if (!formData.itemName) {
+			setSubmissionStatus('Please enter an item name');
+		} else if (!formData.daysUntilNextPurchase) {
+			setSubmissionStatus('Please choose how soon you will need to purchase');
+		} else {
 			try {
 				const convertedFormData = {
 					itemName: formData.itemName,
 					daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
 				};
 				await addItem(listToken, convertedFormData);
-				setSubmissionStatus('Item has been added to the list');
+				setSubmissionStatus(`${formData.itemName} has been added to the list`);
 
 				// Clear the form after successful submission
 				setFormData({
@@ -54,10 +58,8 @@ export function AddItem({ data }) {
 					daysUntilNextPurchase: '',
 				});
 			} catch (err) {
-				setSubmissionStatus('An error encountered');
+				setSubmissionStatus('An error occurred. Please try again later');
 			}
-		} else {
-			setSubmissionStatus('Please enter valid inputs');
 		}
 
 		setTimeout(() => setShowMessage(false), 3000);
