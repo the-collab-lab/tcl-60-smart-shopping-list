@@ -9,12 +9,10 @@ export function AddItem({ data }) {
 	const [submissionStatus, setSubmissionStatus] = useState('');
 	const [showMessage, setShowMessage] = useState(false);
 
-	const itemregex = /[^a-zA-Z0-9]+/g;
-
-	const Notify = (itemName) => {
-		const regItem = itemName.toLowerCase().replace(itemregex, '');
-		setSubmissionStatus(` ${regItem} is already present in the list`);
-	};
+	function normalizeName(itemName) {
+		if (!itemName) return '';
+		return itemName.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '');
+	}
 
 	function handleChange(event) {
 		const { name, value } = event.target;
@@ -33,20 +31,15 @@ export function AddItem({ data }) {
 		event.preventDefault();
 		setShowMessage(true);
 
-		const matchItem = data.some((item) => {
-			return (
-				item.name &&
-				item.name.toLowerCase().replaceAll(itemregex, '') ===
-					formData.itemName.toLowerCase().replaceAll(itemregex, '')
+		const matchExistingItem = data.some(
+			(item) => normalizeName(item.name) === normalizeName(formData.itemName),
+		);
+
+		if (matchExistingItem) {
+			setSubmissionStatus(
+				`${formData.itemName} is already present in the list`,
 			);
-		});
-
-		if (matchItem) {
-			Notify(formData.itemName);
-			return;
-		}
-
-		if (formData.itemName && formData.daysUntilNextPurchase) {
+		} else if (formData.itemName && formData.daysUntilNextPurchase) {
 			try {
 				const convertedFormData = {
 					itemName: formData.itemName,
@@ -76,7 +69,6 @@ export function AddItem({ data }) {
 				Hello from the <code>/add-item</code> page!
 			</p>
 			<form onSubmit={handleSubmit}>
-				{/*  TODO: prevent users from entering blank/duplicate items  */}
 				<label htmlFor="itemName">Item name:</label>
 				<br />
 				<input
