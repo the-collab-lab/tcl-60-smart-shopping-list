@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { addItem } from '../api/firebase';
 
-export function AddItem({ data }) {
+export function AddItem({ data, token }) {
 	const [formData, setFormData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: '',
@@ -25,8 +25,6 @@ export function AddItem({ data }) {
 		});
 	}
 
-	const listToken = localStorage.getItem('tcl-shopping-list-token');
-
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
@@ -49,7 +47,7 @@ export function AddItem({ data }) {
 					itemName: formData.itemName,
 					daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
 				};
-				await addItem(listToken, convertedFormData);
+				await addItem(token, convertedFormData);
 				setSubmissionStatus(`${formData.itemName} has been added to the list`);
 
 				// Clear the form after successful submission

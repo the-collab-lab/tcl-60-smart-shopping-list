@@ -65,7 +65,10 @@ export function App() {
 						path="/list"
 						element={<List data={data} token={listToken} />}
 					/>
-					<Route path="/add-item" element={<AddItem data={data} />} />
+					<Route
+						path="/add-item"
+						element={<AddItem data={data} token={listToken} />}
+					/>
 				</Route>
 			</Routes>
 		</Router>
