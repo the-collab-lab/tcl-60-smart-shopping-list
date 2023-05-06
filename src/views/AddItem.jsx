@@ -21,6 +21,33 @@ export function AddItem({ data, token }) {
 		return itemName.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '');
 	}
 
+	function validateFormData(formData) {
+		const matchExistingItem = data.some(
+			(item) => normalizeName(item.name) === normalizeName(formData.itemName),
+		);
+
+		if (!formData.itemName) {
+			return { valid: false, message: 'Please enter an item name' };
+		} else if (!formData.daysUntilNextPurchase) {
+			return {
+				valid: false,
+				message: 'Please choose how soon you will need to purchase',
+			};
+		} else if (matchExistingItem) {
+			return {
+				valid: false,
+				message: `${formData.itemName} is already present in the list`,
+			};
+		}
+		return {
+			valid: true,
+			data: {
+				itemName: formData.itemName,
+				daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
+			},
+		};
+	}
+
 	function handleChange(event) {
 		const { name, value } = event.target;
 
@@ -35,26 +62,12 @@ export function AddItem({ data, token }) {
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
-
-		const matchExistingItem = data.some(
-			(item) => normalizeName(item.name) === normalizeName(formData.itemName),
-		);
-
-		if (!formData.itemName) {
-			setSubmissionStatus('Please enter an item name');
-		} else if (!formData.daysUntilNextPurchase) {
-			setSubmissionStatus('Please choose how soon you will need to purchase');
-		} else if (matchExistingItem) {
-			setSubmissionStatus(
-				`${formData.itemName} is already present in the list`,
-			);
+		const validatedData = validateFormData(formData);
+		if (!validatedData.valid) {
+			setSubmissionStatus(validatedData.message);
 		} else {
 			try {
-				const convertedFormData = {
-					itemName: formData.itemName,
-					daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
-				};
-				await addItem(token, convertedFormData);
+				await addItem(token, validatedData.data);
 				setSubmissionStatus(`${formData.itemName} has been added to the list`);
 
 				// Clear the form after successful submission
