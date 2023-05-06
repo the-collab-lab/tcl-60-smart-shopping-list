@@ -18,7 +18,8 @@ export function AddItem({ data, token }) {
 
 	function normalizeName(itemName) {
 		if (!itemName) return '';
-		return itemName.toLowerCase().replace(/[^a-zA-Z0-9]+/g, '');
+		'Lüdenscheid'.match();
+		return itemName.toLowerCase().replace(/[^\p{Letter}\p{Mark}]+/gu, '');
 	}
 
 	function validateFormData(formData) {
