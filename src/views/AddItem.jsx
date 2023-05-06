@@ -1,13 +1,52 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { addItem } from '../api/firebase';
+import { useNavigate } from 'react-router-dom';
 
-export function AddItem() {
+export function AddItem({ data, token }) {
+	const navigate = useNavigate();
+	useEffect(() => {
+		if (!token) navigate('/');
+		// disable warning that navigate should be a dependency
+		// eslint-disable-next-line
+	}, [token]);
 	const [formData, setFormData] = useState({
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
 	const [submissionStatus, setSubmissionStatus] = useState('');
 	const [showMessage, setShowMessage] = useState(false);
+
+	function normalizeName(itemName) {
+		if (!itemName) return '';
+		return itemName.toLowerCase().replace(/[^\p{Letter}\p{Mark}]+/gu, '');
+	}
+
+	function validateFormData(formData) {
+		const matchExistingItem = data.some(
+			(item) => normalizeName(item.name) === normalizeName(formData.itemName),
+		);
+
+		if (!formData.itemName) {
+			return { valid: false, message: 'Please enter an item name' };
+		} else if (!formData.daysUntilNextPurchase) {
+			return {
+				valid: false,
+				message: 'Please choose how soon you will need to purchase',
+			};
+		} else if (matchExistingItem) {
+			return {
+				valid: false,
+				message: `${formData.itemName} is already present in the list`,
+			};
+		}
+		return {
+			valid: true,
+			data: {
+				itemName: formData.itemName,
+				daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
+			},
+		};
+	}
 
 	function handleChange(event) {
 		const { name, value } = event.target;
@@ -20,20 +59,16 @@ export function AddItem() {
 		});
 	}
 
-	const listToken = localStorage.getItem('tcl-shopping-list-token');
-
 	async function handleSubmit(event) {
 		event.preventDefault();
 		setShowMessage(true);
-
-		if (formData.itemName && formData.daysUntilNextPurchase) {
+		const validatedData = validateFormData(formData);
+		if (!validatedData.valid) {
+			setSubmissionStatus(validatedData.message);
+		} else {
 			try {
-				const convertedFormData = {
-					itemName: formData.itemName,
-					daysUntilNextPurchase: Number(formData.daysUntilNextPurchase),
-				};
-				await addItem(listToken, convertedFormData);
-				setSubmissionStatus('Item has been added to the list');
+				await addItem(token, validatedData.data);
+				setSubmissionStatus(`${formData.itemName} has been added to the list`);
 
 				// Clear the form after successful submission
 				setFormData({
@@ -41,20 +76,15 @@ export function AddItem() {
 					daysUntilNextPurchase: '',
 				});
 			} catch (err) {
-				setSubmissionStatus('An error encountered');
+				setSubmissionStatus('An error occurred. Please try again later');
 			}
-		} else {
-			setSubmissionStatus('Please enter valid inputs');
 		}
 
 		setTimeout(() => setShowMessage(false), 3000);
 	}
-
+	if (!token) return <p></p>;
 	return (
 		<>
-			<p>
-				Hello from the <code>/add-item</code> page!
-			</p>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="itemName">Item name:</label>
 				<br />
@@ -95,8 +125,8 @@ export function AddItem() {
 					<label htmlFor="thirtyDays">Not so soon</label>
 				</div>
 				<div>
-					{showMessage ? <p>{submissionStatus}</p> : null}
 					<button>Submit</button>
+					{showMessage ? <p>{submissionStatus}</p> : null}
 				</div>
 			</form>
 		</>

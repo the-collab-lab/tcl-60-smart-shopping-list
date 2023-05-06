@@ -34,7 +34,7 @@ export function Home({ setNewToken, token, setToken }) {
 			});
 		setExistingToken('');
 	}
-
+	if (token) return <p></p>;
 	return (
 		<div className="Home">
 			<p>
