@@ -1,7 +1,7 @@
 import { updateItem } from '../api/firebase';
 import './ListItem.css';
 import { useState, useEffect } from 'react';
-//TODO: mark as purchased feature
+
 export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [checked, setChecked] = useState(false);
 
@@ -26,16 +26,15 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 
 	return (
 		<li className="ListItem">
-			<label>
-				<input
-					value={name}
-					type="checkbox"
-					onChange={handlecheck}
-					checked={checked}
-					disabled={checked}
-				/>
-			</label>
-			{name}
+			<input
+				value={name}
+				id={name}
+				type="checkbox"
+				onChange={handlecheck}
+				checked={checked}
+				disabled={checked}
+			/>
+			<label htmlFor={name}>{name}</label>
 		</li>
 	);
 }
