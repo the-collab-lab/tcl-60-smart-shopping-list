@@ -40,14 +40,14 @@ export function AddItem({ data, token }) {
 			(item) => normalizeName(item.name) === normalizeName(formData.itemName),
 		);
 
-		if (matchExistingItem) {
-			setSubmissionStatus(
-				`${formData.itemName} is already present in the list`,
-			);
-		} else if (!formData.itemName) {
+		if (!formData.itemName) {
 			setSubmissionStatus('Please enter an item name');
 		} else if (!formData.daysUntilNextPurchase) {
 			setSubmissionStatus('Please choose how soon you will need to purchase');
+		} else if (matchExistingItem) {
+			setSubmissionStatus(
+				`${formData.itemName} is already present in the list`,
+			);
 		} else {
 			try {
 				const convertedFormData = {
