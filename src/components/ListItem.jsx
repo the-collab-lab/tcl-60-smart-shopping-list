@@ -26,6 +26,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 
 	return (
 		<li className="ListItem">
+			{/* TODO: add a delete button */}
 			<input
 				value={name}
 				id={name}
