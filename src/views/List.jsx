@@ -2,6 +2,8 @@ import { ListItem } from '../components';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
+// Sorting items for the user to identify what they need to buy according to how urgently they should buy the item
+
 export function List({ data, token }) {
 	const navigate = useNavigate();
 	useEffect(() => {
