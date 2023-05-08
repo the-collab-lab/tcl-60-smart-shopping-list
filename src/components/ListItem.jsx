@@ -1,9 +1,11 @@
 import { updateItem } from '../api/firebase';
 import './ListItem.css';
 import { useState, useEffect } from 'react';
+import { deleteItem } from '../api/firebase';
 
 export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [checked, setChecked] = useState(false);
+	const listId = localStorage.getItem('tcl-shopping-list-token');
 
 	useEffect(() => {
 		let purchasedonDate = dateLastPurchased
@@ -17,7 +19,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	}, [dateLastPurchased]);
 
 	const handlecheck = async () => {
-		const listId = localStorage.getItem('tcl-shopping-list-token');
 		setChecked((ischeck) => {
 			updateItem(listId, itemId);
 			return !ischeck;
@@ -35,6 +36,14 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 				disabled={checked}
 			/>
 			<label htmlFor={name}>{name}</label>
+			<button
+				onClick={() => {
+					const confirmDelete = window.confirm('are you sure?');
+					if (confirmDelete) deleteItem(listId, itemId);
+				}}
+			>
+				Delete
+			</button>
 		</li>
 	);
 }
