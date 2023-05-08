@@ -26,9 +26,14 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	};
 
 	const handleDelete = async () => {
-		const confirmDelete = window.confirm('Are you sure?');
-		if (confirmDelete) {
-			await deleteItem(listId, itemId);
+		try {
+			const confirmDelete = window.confirm('Are you sure?');
+			if (confirmDelete) {
+				const listId = localStorage.getItem('tcl-shopping-list-token');
+				await deleteItem(listId, itemId);
+			}
+		} catch (error) {
+			console.error('An error occurred while deleting the item: ', error);
 		}
 	};
 
