@@ -36,7 +36,7 @@ export function getItemData(snapshot) {
 	 * document references. We use `.map()` to iterate over them.
 	 * @see https://firebase.google.com/docs/reference/js/firestore_.documentsnapshot
 	 */
-	return snapshot.docs.map((docRef) => {
+	let result = snapshot.docs.map((docRef) => {
 		/**
 		 * We call the `.data()` method to get the data
 		 * out of the referenced document
@@ -51,6 +51,8 @@ export function getItemData(snapshot) {
 
 		return data;
 	});
+	comparePurchaseUrgency(result);
+	return result;
 }
 
 /**
@@ -125,4 +127,38 @@ export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
 	const existingList = await getDocs(listCollectionRef, undefined);
 	return existingList.empty ? false : true;
+}
+
+export async function comparePurchaseUrgency(shoppingList) {
+	console.log(shoppingList);
+	shoppingList.forEach((item) => {
+		console.log(item);
+
+		// create urgency indicator
+		if (item.dateNextPurchased != null) {
+			let daysDiff = getDaysBetweenDates(
+				item.dateNextPurchased.toDate().getTime(),
+				new Date().getTime(),
+			);
+			item.urgency =
+				daysDiff >= 30
+					? 'Not soon'
+					: daysDiff >= 7
+					? 'Kind of Soon'
+					: daysDiff >= 0
+					? 'Soon'
+					: '';
+		}
+
+		if (item.dateLastPurchased != null) {
+			if (
+				getDaysBetweenDates(
+					new Date().getTime(),
+					item.dateLastPurchased.toDate().getTime(),
+				) >= 60
+			) {
+				item.urgency = 'inactive';
+			}
+		}
+	});
 }
