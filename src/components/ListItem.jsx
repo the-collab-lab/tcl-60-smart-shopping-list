@@ -2,7 +2,7 @@ import { updateItem } from '../api/firebase';
 import './ListItem.css';
 import { useState, useEffect } from 'react';
 
-export function ListItem({ name, itemId, dateLastPurchased }) {
+export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [checked, setChecked] = useState(false);
 
 	useEffect(() => {
@@ -34,7 +34,9 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 				checked={checked}
 				disabled={checked}
 			/>
-			<label htmlFor={name}>{name}</label>
+			<label htmlFor={name}>
+				{name} - {urgency}
+			</label>
 		</li>
 	);
 }
