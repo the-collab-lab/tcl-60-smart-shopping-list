@@ -25,6 +25,13 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		});
 	};
 
+	const handleDelete = async () => {
+		const confirmDelete = window.confirm('Are you sure?');
+		if (confirmDelete) {
+			await deleteItem(listId, itemId);
+		}
+	};
+
 	return (
 		<li className="ListItem">
 			<input
@@ -36,12 +43,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 				disabled={checked}
 			/>
 			<label htmlFor={name}>{name}</label>
-			<button
-				onClick={() => {
-					const confirmDelete = window.confirm('are you sure?');
-					if (confirmDelete) deleteItem(listId, itemId);
-				}}
-			>
+			<button type="button" onClick={handleDelete}>
 				Delete
 			</button>
 		</li>
