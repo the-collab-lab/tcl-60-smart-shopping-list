@@ -161,4 +161,31 @@ export async function comparePurchaseUrgency(shoppingList) {
 			}
 		}
 	});
+
+	// sort the shoppingList
+	shoppingList.sort((a, b) => {
+		return a.dateNextPurchased - b.dateNextPurchased;
+	});
+
+	// sort items with same dateNextPurchased alphabatically
+	shoppingList.sort((a, b) => {
+		if (
+			a.dateNextPurchased.toDate().getDay() ===
+			b.dateNextPurchased.toDate().getDay()
+		) {
+			return a.name.localeCompare(b.name);
+		}
+		return a.dateNextPurchased - b.dateNextPurchased;
+	});
+
+	// inactive items at the end of the list
+	shoppingList.sort((a, b) => {
+		if (a.urgency === 'inactive') {
+			return 1;
+		} else if (b.urgency === 'inactive') {
+			return -1;
+		} else {
+			return 0;
+		}
+	});
 }
