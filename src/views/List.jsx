@@ -48,6 +48,7 @@ export function List({ data, token }) {
 									name={item.name}
 									itemId={item.id}
 									dateLastPurchased={item.dateLastPurchased}
+									urgency={item.urgency}
 								/>
 							))}
 					</ul>
