@@ -5,6 +5,7 @@ import {
 	getDocs,
 	getDoc,
 	updateDoc,
+	deleteDoc,
 	doc,
 } from 'firebase/firestore';
 import { db } from './config';
@@ -113,12 +114,13 @@ export async function updateItem(listId, itemId) {
 	});
 }
 
-export async function deleteItem() {
+export async function deleteItem(listId, itemId) {
 	/**
 	 * TODO: Fill this out so that it uses the correct Firestore function
 	 * to delete an existing item. You'll need to figure out what arguments
 	 * this function must accept!
 	 */
+	await deleteDoc(doc(db, listId, itemId));
 }
 
 export async function checkItem(listId) {
