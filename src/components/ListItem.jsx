@@ -19,10 +19,13 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	}, [dateLastPurchased]);
 
 	const handlecheck = async () => {
-		setChecked((ischeck) => {
-			updateItem(listId, itemId);
-			return !ischeck;
-		});
+		try {
+			await updateItem(listId, itemId);
+			setChecked(true);
+		} catch (error) {
+			console.error('Failed to update item:', error);
+			setChecked(false);
+		}
 	};
 
 	const handleDelete = async () => {
