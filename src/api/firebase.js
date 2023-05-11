@@ -130,24 +130,22 @@ export async function checkItem(listId) {
 }
 
 export async function comparePurchaseUrgency(shoppingList) {
-	console.log(shoppingList);
 	shoppingList.forEach((item) => {
-		console.log(item);
-
 		// create urgency indicator
 		if (item.dateNextPurchased != null) {
 			let daysDiff = getDaysBetweenDates(
 				item.dateNextPurchased.toDate().getTime(),
 				new Date().getTime(),
 			);
-			item.urgency =
-				daysDiff >= 30
-					? 'Not soon'
-					: daysDiff >= 7
-					? 'Kind of Soon'
-					: daysDiff >= 0
-					? 'Soon'
-					: '';
+			if (daysDiff >= 30) {
+				item.urgency = 'Not soon';
+			} else if (daysDiff >= 7) {
+				item.urgency = 'Kind of Soon';
+			} else if (daysDiff >= 0) {
+				item.urgency = 'Soon';
+			} else if (daysDiff <= -1) {
+				item.urgency = 'Overdue';
+			}
 		}
 
 		if (item.dateLastPurchased != null) {
