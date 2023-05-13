@@ -143,7 +143,7 @@ export async function comparePurchaseUrgency(shoppingList) {
 				item.urgency = 'Kind of Soon';
 			} else if (daysDiff >= 0) {
 				item.urgency = 'Soon';
-			} else if (daysDiff <= -1) {
+			} else if (daysDiff < 0) {
 				item.urgency = 'Overdue';
 			}
 		}
