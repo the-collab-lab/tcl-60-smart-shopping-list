@@ -160,30 +160,22 @@ export async function comparePurchaseUrgency(shoppingList) {
 		}
 	});
 
-	// sort the shoppingList
 	shoppingList.sort((a, b) => {
-		return a.dateNextPurchased - b.dateNextPurchased;
-	});
-
-	// sort items with same dateNextPurchased alphabatically
-	shoppingList.sort((a, b) => {
-		if (
-			a.dateNextPurchased.toDate().getDay() ===
-			b.dateNextPurchased.toDate().getDay()
-		) {
-			return a.name.localeCompare(b.name);
-		}
-		return a.dateNextPurchased - b.dateNextPurchased;
-	});
-
-	// inactive items at the end of the list
-	shoppingList.sort((a, b) => {
-		if (a.urgency === 'inactive') {
+		if (a.urgency === 'Overdue' && b.urgency !== 'Overdue') {
+			return -1; // Place "Overdue" items at the top
+		} else if (a.urgency !== 'Overdue' && b.urgency === 'Overdue') {
 			return 1;
-		} else if (b.urgency === 'inactive') {
+		} else if (a.urgency === 'inactive' && b.urgency !== 'inactive') {
+			return 1; // Place "inactive" items at the bottom
+		} else if (a.urgency !== 'inactive' && b.urgency === 'inactive') {
 			return -1;
+		} else if (
+			a.dateNextPurchased.toDate().getTime() ===
+			b.dateNextPurchased.toDate().getTime()
+		) {
+			return a.name.localeCompare(b.name); // Sort alphabetically if dates are the same
 		} else {
-			return 0;
+			return a.dateNextPurchased - b.dateNextPurchased; // Sort by dateNextPurchased in ascending order
 		}
 	});
 }
