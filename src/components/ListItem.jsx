@@ -32,7 +32,6 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 		try {
 			const confirmDelete = window.confirm('Are you sure?');
 			if (confirmDelete) {
-				const listId = localStorage.getItem('tcl-shopping-list-token');
 				await deleteItem(listId, itemId);
 			}
 		} catch (error) {
