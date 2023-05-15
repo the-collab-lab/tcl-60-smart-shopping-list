@@ -37,7 +37,7 @@ export function getItemData(snapshot) {
 	 * document references. We use `.map()` to iterate over them.
 	 * @see https://firebase.google.com/docs/reference/js/firestore_.documentsnapshot
 	 */
-	return snapshot.docs.map((docRef) => {
+	let result = snapshot.docs.map((docRef) => {
 		/**
 		 * We call the `.data()` method to get the data
 		 * out of the referenced document
@@ -52,6 +52,8 @@ export function getItemData(snapshot) {
 
 		return data;
 	});
+	comparePurchaseUrgency(result);
+	return result;
 }
 
 /**
@@ -126,4 +128,55 @@ export async function checkItem(listId) {
 	const listCollectionRef = collection(db, listId);
 	const existingList = await getDocs(listCollectionRef, undefined);
 	return existingList.empty ? false : true;
+}
+
+export async function comparePurchaseUrgency(shoppingList) {
+	shoppingList.forEach((item) => {
+		// create urgency indicator
+		if (item.dateNextPurchased != null) {
+			let daysDiff = getDaysBetweenDates(
+				item.dateNextPurchased.toDate().getTime(),
+				new Date().getTime(),
+			);
+			if (daysDiff >= 30) {
+				item.urgency = 'Not soon';
+			} else if (daysDiff >= 7) {
+				item.urgency = 'Kind of Soon';
+			} else if (daysDiff >= 0) {
+				item.urgency = 'Soon';
+			} else if (daysDiff < 0) {
+				item.urgency = 'Overdue';
+			}
+		}
+
+		if (item.dateLastPurchased != null) {
+			if (
+				getDaysBetweenDates(
+					new Date().getTime(),
+					item.dateLastPurchased.toDate().getTime(),
+				) >= 60
+			) {
+				item.urgency = 'inactive';
+			}
+		}
+	});
+
+	shoppingList.sort((a, b) => {
+		if (a.urgency === 'Overdue' && b.urgency !== 'Overdue') {
+			return -1; // Place "Overdue" items at the top
+		} else if (a.urgency !== 'Overdue' && b.urgency === 'Overdue') {
+			return 1;
+		} else if (a.urgency === 'inactive' && b.urgency !== 'inactive') {
+			return 1; // Place "inactive" items at the bottom
+		} else if (a.urgency !== 'inactive' && b.urgency === 'inactive') {
+			return -1;
+		} else if (
+			a.dateNextPurchased.toDate().getTime() ===
+			b.dateNextPurchased.toDate().getTime()
+		) {
+			return a.name.localeCompare(b.name); // Sort alphabetically if dates are the same
+		} else {
+			return a.dateNextPurchased - b.dateNextPurchased; // Sort by dateNextPurchased in ascending order
+		}
+	});
 }

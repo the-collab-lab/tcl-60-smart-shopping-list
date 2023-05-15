@@ -3,7 +3,7 @@ import './ListItem.css';
 import { useState, useEffect } from 'react';
 import { deleteItem } from '../api/firebase';
 
-export function ListItem({ name, itemId, dateLastPurchased }) {
+export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [checked, setChecked] = useState(false);
 	const listId = localStorage.getItem('tcl-shopping-list-token');
 
@@ -49,6 +49,7 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 				checked={checked}
 				disabled={checked}
 			/>
+
 			<label htmlFor={name}>{name}</label>
 			<button type="button" onClick={handleDelete}>
 				Delete

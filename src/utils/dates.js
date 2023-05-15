@@ -12,7 +12,7 @@ export function getFutureDate(offset) {
 }
 
 export function getDaysBetweenDates(date1, date2) {
-	const diffInMs = Math.abs(date1 - date2);
+	const diffInMs = date1 - date2;
 	const msToDays = diffInMs / ONE_DAY_IN_MILLISECONDS;
 	return msToDays;
 }
