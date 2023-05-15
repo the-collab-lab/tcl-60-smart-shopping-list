@@ -1,9 +1,11 @@
 import { updateItem } from '../api/firebase';
 import './ListItem.css';
 import { useState, useEffect } from 'react';
+import { deleteItem } from '../api/firebase';
 
 export function ListItem({ name, itemId, dateLastPurchased }) {
 	const [checked, setChecked] = useState(false);
+	const listId = localStorage.getItem('tcl-shopping-list-token');
 
 	useEffect(() => {
 		let purchasedonDate = dateLastPurchased
@@ -17,11 +19,24 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 	}, [dateLastPurchased]);
 
 	const handlecheck = async () => {
-		const listId = localStorage.getItem('tcl-shopping-list-token');
-		setChecked((ischeck) => {
-			updateItem(listId, itemId);
-			return !ischeck;
-		});
+		try {
+			await updateItem(listId, itemId);
+			setChecked(true);
+		} catch (error) {
+			console.error('Failed to update item:', error);
+			setChecked(false);
+		}
+	};
+
+	const handleDelete = async () => {
+		try {
+			const confirmDelete = window.confirm('Are you sure?');
+			if (confirmDelete) {
+				await deleteItem(listId, itemId);
+			}
+		} catch (error) {
+			console.error('An error occurred while deleting the item: ', error);
+		}
 	};
 
 	return (
@@ -35,6 +50,9 @@ export function ListItem({ name, itemId, dateLastPurchased }) {
 				disabled={checked}
 			/>
 			<label htmlFor={name}>{name}</label>
+			<button type="button" onClick={handleDelete}>
+				Delete
+			</button>
 		</li>
 	);
 }
