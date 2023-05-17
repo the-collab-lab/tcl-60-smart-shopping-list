@@ -13,8 +13,6 @@ export function AddItem({ data, token }) {
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
-	// const [submissionStatus, toast] = useState('');
-	const [showMessage, setShowMessage] = useState(false);
 
 	function normalizeName(itemName) {
 		if (!itemName) return '';
@@ -61,14 +59,13 @@ export function AddItem({ data, token }) {
 
 	async function handleSubmit(event) {
 		event.preventDefault();
-		setShowMessage(true);
 		const validatedData = validateFormData(formData);
 		if (!validatedData.valid) {
-			toast(validatedData.message);
+			toast.error(validatedData.message);
 		} else {
 			try {
 				await addItem(token, validatedData.data);
-				toast(`${formData.itemName} has been added to the list`);
+				toast.success(`${formData.itemName} has been added to the list`);
 
 				// Clear the form after successful submission
 				setFormData({
@@ -76,11 +73,9 @@ export function AddItem({ data, token }) {
 					daysUntilNextPurchase: '',
 				});
 			} catch (err) {
-				toast('An error occurred. Please try again later');
+				toast.error('An error occurred. Please try again later');
 			}
 		}
-
-		setTimeout(() => setShowMessage(false), 3000);
 	}
 	if (!token) return <p></p>;
 	return (
@@ -126,7 +121,6 @@ export function AddItem({ data, token }) {
 				</div>
 				<div>
 					<button>Submit</button>
-					{/* {showMessage ? <p>{submissionStatus}</p> : null} */}
 				</div>
 			</form>
 		</>

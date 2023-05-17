@@ -50,7 +50,7 @@ export function App() {
 	return (
 		<>
 			<Toaster
-				position="top-center"
+				position="bottom-right"
 				reverseOrder={false}
 				toastOptions={{
 					// Define default options
@@ -58,8 +58,8 @@ export function App() {
 					duration: 5000,
 					style: {
 						marginBottom: '33px',
-						background: '#363636',
-						color: '#fff',
+						background: '#FEFAE0',
+						color: '#13310D',
 					},
 
 					// Default options for specific types
