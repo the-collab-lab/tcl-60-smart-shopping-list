@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addItem } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
-
+import toast from 'react-hot-toast';
 export function AddItem({ data, token }) {
 	const navigate = useNavigate();
 	useEffect(() => {
@@ -13,7 +13,7 @@ export function AddItem({ data, token }) {
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
-	const [submissionStatus, setSubmissionStatus] = useState('');
+	// const [submissionStatus, toast] = useState('');
 	const [showMessage, setShowMessage] = useState(false);
 
 	function normalizeName(itemName) {
@@ -64,11 +64,11 @@ export function AddItem({ data, token }) {
 		setShowMessage(true);
 		const validatedData = validateFormData(formData);
 		if (!validatedData.valid) {
-			setSubmissionStatus(validatedData.message);
+			toast(validatedData.message);
 		} else {
 			try {
 				await addItem(token, validatedData.data);
-				setSubmissionStatus(`${formData.itemName} has been added to the list`);
+				toast(`${formData.itemName} has been added to the list`);
 
 				// Clear the form after successful submission
 				setFormData({
@@ -76,7 +76,7 @@ export function AddItem({ data, token }) {
 					daysUntilNextPurchase: '',
 				});
 			} catch (err) {
-				setSubmissionStatus('An error occurred. Please try again later');
+				toast('An error occurred. Please try again later');
 			}
 		}
 
@@ -126,7 +126,7 @@ export function AddItem({ data, token }) {
 				</div>
 				<div>
 					<button>Submit</button>
-					{showMessage ? <p>{submissionStatus}</p> : null}
+					{/* {showMessage ? <p>{submissionStatus}</p> : null} */}
 				</div>
 			</form>
 		</>

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-
+import { Toaster } from 'react-hot-toast';
 import { AddItem, Home, Layout, List } from './views';
 
 import { getItemData, streamListItems } from './api';
@@ -48,29 +48,54 @@ export function App() {
 	}, [listToken]);
 
 	return (
-		<Router>
-			<Routes>
-				<Route path="/" element={<Layout token={listToken} />}>
-					<Route
-						index
-						element={
-							<Home
-								setNewToken={setNewToken}
-								token={listToken}
-								setToken={setListToken}
-							/>
-						}
-					/>
-					<Route
-						path="/list"
-						element={<List data={data} token={listToken} />}
-					/>
-					<Route
-						path="/add-item"
-						element={<AddItem data={data} token={listToken} />}
-					/>
-				</Route>
-			</Routes>
-		</Router>
+		<>
+			<Toaster
+				position="top-center"
+				reverseOrder={false}
+				toastOptions={{
+					// Define default options
+					className: '',
+					duration: 5000,
+					style: {
+						marginBottom: '33px',
+						background: '#363636',
+						color: '#fff',
+					},
+
+					// Default options for specific types
+					success: {
+						duration: 3000,
+						theme: {
+							primary: 'green',
+							secondary: 'black',
+						},
+					},
+				}}
+			/>
+			<Router>
+				<Routes>
+					<Route path="/" element={<Layout token={listToken} />}>
+						<Route
+							index
+							element={
+								<Home
+									setNewToken={setNewToken}
+									token={listToken}
+									setToken={setListToken}
+								/>
+							}
+						/>
+						<Route
+							path="/list"
+							element={<List data={data} token={listToken} />}
+						/>
+						<Route
+							path="/add-item"
+							element={<AddItem data={data} token={listToken} />}
+						/>
+					</Route>
+				</Routes>
+			</Router>
+		</>
 	);
 }
