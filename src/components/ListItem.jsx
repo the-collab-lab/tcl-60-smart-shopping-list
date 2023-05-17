@@ -3,8 +3,13 @@ import './ListItem.css';
 import { useState, useEffect } from 'react';
 import { deleteItem } from '../api/firebase';
 
+import Modal from 'react-modal';
+Modal.setAppElement('#root');
+
 export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	const [checked, setChecked] = useState(false);
+	const [modalStatus, setModalStatus] = useState(false);
+
 	const listId = localStorage.getItem('tcl-shopping-list-token');
 
 	useEffect(() => {
@@ -27,13 +32,20 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 			setChecked(false);
 		}
 	};
+	const openModal = async () => {
+		setModalStatus(true);
+	};
+
+	const closeModal = async () => {
+		setModalStatus(false);
+	};
 
 	const handleDelete = async () => {
+		console.log(modalStatus);
+
 		try {
-			const confirmDelete = window.confirm('Are you sure?');
-			if (confirmDelete) {
-				await deleteItem(listId, itemId);
-			}
+			await deleteItem(listId, itemId);
+			setModalStatus(false);
 		} catch (error) {
 			console.error('An error occurred while deleting the item: ', error);
 		}
@@ -51,9 +63,18 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 			/>
 
 			<label htmlFor={name}>{name}</label>
-			<button type="button" onClick={handleDelete}>
+			<button type="button" onClick={openModal}>
 				Delete
 			</button>
+			{/* modal  */}
+			<Modal isOpen={modalStatus} onRequestClose={closeModal}>
+				<h2>Are you sure you want to delete?</h2>
+				<p>Press confirm if yes, press cancel to go back</p>
+				<div>
+					<button onClick={handleDelete}>Confirm</button>
+					<button onClick={closeModal}>Cancel</button>
+				</div>
+			</Modal>
 		</li>
 	);
 }
