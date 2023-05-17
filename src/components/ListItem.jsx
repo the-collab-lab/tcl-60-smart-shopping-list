@@ -67,7 +67,15 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 				Delete
 			</button>
 			{/* modal  */}
-			<Modal isOpen={modalStatus} onRequestClose={closeModal}>
+			<Modal
+				style={{
+					content: {
+						color: 'black', // Add the desired color here
+					},
+				}}
+				isOpen={modalStatus}
+				onRequestClose={closeModal}
+			>
 				<h2>Are you sure you want to delete?</h2>
 				<p>Press confirm if yes, press cancel to go back</p>
 				<div>
