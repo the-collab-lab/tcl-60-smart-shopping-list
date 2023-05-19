@@ -10,7 +10,6 @@
 	--color-bg: var(--color-med-brown);
 	--color-text: var(--color-xdark-green);
 	--color-accent: var(--color-dark-brown);
-	--color-text-alt: var(--color-dark-green);
 }
 
 @media screen and (prefers-color-scheme: light) {
@@ -18,7 +17,6 @@
 		--color-bg: var(--color-med-brown);
 		--color-text: var(--color-xdark-green);
 		--color-accent: var(--color-dark-brown);
-		--color-text-alt: var(--color-dark-green);
 	}
 }
 
@@ -26,7 +24,6 @@
 	--color-bg: var(--color-med-brown);
 	--color-text: var(--color-xdark-green);
 	--color-accent: var(--color-dark-brown);
-	--color-text-alt: var(--color-dark-green);
 }
 
 *,
