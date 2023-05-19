@@ -1,0 +1,42 @@
+.list-container {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+
+.search-bar {
+	position: relative;
+	border: 2px solid var(--color-accent-primary);
+	background-color: var(--color-accent-primary-alt);
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0.5rem 0.8rem;
+	width: 350px;
+	border-radius: 7px;
+	z-index: -1;
+}
+
+.filter-label {
+	position: absolute;
+	top: 50%;
+	left: 0.8rem;
+	transform: translateY(-50%);
+	pointer-events: none;
+	color: #999;
+}
+
+.search-bar .fi-search-icon {
+	height: 24px;
+	width: 24px;
+	color: var(--color-accent-primary);
+}
+#query {
+	border: none;
+	width: 100%;
+}
+
+.token-copy p {
+	margin-bottom: 0;
+}
