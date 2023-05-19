@@ -16,7 +16,7 @@ export function AddItem({ data, token }) {
 
 	function normalizeName(itemName) {
 		if (!itemName) return '';
-		return itemName.toLowerCase().replace(/[^\p{Letter}\p{Mark}]+/gu, '');
+		return itemName.toLowerCase().replace(/[^\p{Letter}\p{Mark}0-9]+/gu, '');
 	}
 
 	function validateFormData(formData) {
