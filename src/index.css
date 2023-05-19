@@ -83,6 +83,7 @@ button {
 button:hover,
 button:active {
 	background-color: var(--color-text);
+	cursor: pointer;
 }
 
 button:focus-visible {
