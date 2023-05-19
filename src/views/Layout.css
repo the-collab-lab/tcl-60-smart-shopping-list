@@ -50,8 +50,12 @@
 	padding: 0.8rem;
 	text-align: center;
 	text-decoration: none;
+	outline: none;
 }
 
 .Nav-link.active {
 	font-weight: bold;
+}
+.Nav-link:focus-visible {
+	text-decoration: underline;
 }
