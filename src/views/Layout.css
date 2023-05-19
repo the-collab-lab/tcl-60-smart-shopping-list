@@ -10,53 +10,48 @@
 .Layout {
 	display: flex;
 	flex-direction: column;
-	margin: 0 auto;
-	max-width: 100vw;
-	padding-top: calc(1rem + env(safe-area-inset-top, 1rem));
-	padding-bottom: calc(1rem + env(safe-area-inset-bottom, 1rem));
-	width: 54rem;
 }
 
 .Layout-header {
-	background-color: var(--color-bg);
+	background-color: var(--color-accent);
 	position: sticky;
 	text-align: center;
 	top: 0;
 }
-
-.Layout-header > h1 {
-	margin-top: 0;
+.Layout-header h1 {
+	color: var(--color-text);
+	margin: 1rem 0;
 }
 
 .Layout-main {
 	margin: 0 auto;
-	max-width: 95vw;
-	width: 95%;
+	max-width: 100vw;
+	padding-top: calc(2vh + env(safe-area-inset-top, 1rem));
+	padding-bottom: calc(2vh + env(safe-area-inset-bottom, 1rem));
+	width: 54rem;
 }
 
 .Nav {
 	align-items: stretch;
-	background-color: var(--color-bg);
+	background-color: var(--color-accent);
 	bottom: 0;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
 	margin-top: auto;
 	position: sticky;
+	padding: 1rem;
 }
 
 .Nav-link {
-	--color-text: var(--color-accent);
-
 	color: var(--color-text);
 	font-size: 1.45em;
 	flex: 0 1 auto;
 	padding: 0.8rem;
 	text-align: center;
-	text-underline-offset: 0.1em;
+	text-decoration: none;
 }
 
 .Nav-link.active {
-	text-decoration-thickness: 0.22em;
-	text-underline-offset: 0.1em;
+	font-weight: bold;
 }
