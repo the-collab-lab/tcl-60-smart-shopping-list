@@ -37,9 +37,6 @@ export function Home({ setNewToken, token, setToken }) {
 	if (token) return <p></p>;
 	return (
 		<div className="Home">
-			<p>
-				Hello from the home (<code>/</code>) page!
-			</p>
 			<button onClick={setNewToken}>New List</button>
 			<form onSubmit={handleSubmit}>
 				<label htmlFor="existingToken">Enter existing token:</label>
