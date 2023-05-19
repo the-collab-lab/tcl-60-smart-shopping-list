@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { addItem } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
+import './AddItem.css';
 
 export function AddItem({ data, token }) {
 	const navigate = useNavigate();
@@ -50,7 +51,6 @@ export function AddItem({ data, token }) {
 
 	function handleChange(event) {
 		const { name, value } = event.target;
-
 		setFormData((prevFormData) => {
 			return {
 				...prevFormData,
@@ -58,6 +58,23 @@ export function AddItem({ data, token }) {
 			};
 		});
 	}
+
+	const radioButtons = document.querySelectorAll('.denote');
+	const labels = document.querySelectorAll('denote');
+
+	radioButtons.forEach((radioButton) => {
+		radioButton.addEventListener('change', () => {
+			labels.forEach((label) => {
+				if (label.htmlFor === radioButton.id) {
+					if (radioButton.checked) {
+						label.classList.add('changebg'); // Add the class if the radio button is selected
+					} else {
+						label.classList.remove('changebg'); // Remove the class if the radio button is not selected
+					}
+				}
+			});
+		});
+	});
 
 	async function handleSubmit(event) {
 		event.preventDefault();
@@ -85,46 +102,58 @@ export function AddItem({ data, token }) {
 	if (!token) return <p></p>;
 	return (
 		<>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="itemName">Item name:</label>
+			<form className="chooseform" onSubmit={handleSubmit}>
+				<label htmlFor="itemName" className="addit">
+					Item name:
+				</label>
 				<br />
 				<input
+					className="searchname"
 					type="text"
 					id="itemName"
 					onChange={handleChange}
 					name="itemName"
 					value={formData.itemName}
 				/>
-				<div>
+				<div className="choose">
 					<input
-						id="sevenDays"
+						className="radio"
+						id="sevenDays datenday"
 						name="daysUntilNextPurchase"
 						type="radio"
 						value="7"
 						checked={formData.daysUntilNextPurchase === '7'}
 						onChange={handleChange}
 					/>
-					<label htmlFor="sevenDays">Soon</label>
+					<label htmlFor="sevenDays" id="denote" className="denote">
+						Soon
+					</label>
 					<input
-						id="forteenDays"
+						className="radio"
+						id="forteenDays datenday"
 						name="daysUntilNextPurchase"
 						type="radio"
 						value="14"
 						checked={formData.daysUntilNextPurchase === '14'}
 						onChange={handleChange}
 					/>
-					<label htmlFor="forteenDays">Kind of soon</label>
+					<label htmlFor="forteenDays" id="denote" className="denote">
+						Kind of soon
+					</label>
 					<input
-						id="thirtyDays"
+						className="radio"
+						id="thirtyDays datenday"
 						name="daysUntilNextPurchase"
 						type="radio"
 						value="30"
 						checked={formData.daysUntilNextPurchase === '30'}
 						onChange={handleChange}
 					/>
-					<label htmlFor="thirtyDays">Not so soon</label>
+					<label htmlFor="thirtyDays" id="denote" className="denote">
+						Not so soon
+					</label>
 				</div>
-				<div>
+				<div className="btn">
 					<button>Submit</button>
 					{showMessage ? <p>{submissionStatus}</p> : null}
 				</div>
