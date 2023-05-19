@@ -1,29 +1,37 @@
 :root {
-	--color-xdark-green: #11310d;
-	--color-dark-green: #1e5b18;
-	--color-med-green: #ccd5ae;
+	--color-dark-green: #11310d;
+	--color-med-green: #1e5b18;
 	--color-light-green: #eef1d8;
 	--color-dark-brown: #c9b29b;
 	--color-med-brown: #f2e8ce;
 	--color-light-brown: #fefae0;
 
 	--color-bg: var(--color-med-brown);
-	--color-text: var(--color-xdark-green);
-	--color-accent: var(--color-dark-brown);
+	--color-text: var(--color-dark-green);
+	--color-accent-primary: var(--color-dark-brown);
+	--color-accent-primary-alt: var(--color-light-brown);
+	--color-accent-secondary: var(--color-med-green);
+	--color-accent-secondary-alt: var(--color-light-green);
 }
 
 @media screen and (prefers-color-scheme: light) {
 	:root {
 		--color-bg: var(--color-med-brown);
-		--color-text: var(--color-xdark-green);
-		--color-accent: var(--color-dark-brown);
+		--color-text: var(--color-dark-green);
+		--color-accent-primary: var(--color-dark-brown);
+		--color-accent-primary-alt: var(--color-light-brown);
+		--color-accent-secondary: var(--color-med-green);
+		--color-accent-secondary-alt: var(--color-light-green);
 	}
 }
 
 :root.theme-light {
 	--color-bg: var(--color-med-brown);
-	--color-text: var(--color-xdark-green);
-	--color-accent: var(--color-dark-brown);
+	--color-text: var(--color-dark-green);
+	--color-accent-primary: var(--color-dark-brown);
+	--color-accent-primary-alt: var(--color-light-brown);
+	--color-accent-secondary: var(--color-med-green);
+	--color-accent-secondary-alt: var(--color-light-green);
 }
 
 *,
@@ -62,8 +70,8 @@ ul {
 	padding: 0;
 }
 button {
-	background-color: var(--color-dark-green);
-	color: var(--color-light-brown);
+	background-color: var(--color-accent-secondary);
+	color: var(--color-accent-primary-alt);
 	padding: 0.8rem 1.5rem;
 	border: 2px solid transparent;
 	border-radius: 7px;
@@ -74,23 +82,23 @@ button {
 }
 button:hover,
 button:active {
-	background-color: var(--color-xdark-green);
+	background-color: var(--color-text);
 }
 
 button:focus-visible {
 	background-color: var(--color-light-green);
-	color: var(--color-xdark-green);
-	border: 2px solid var(--color-xdark-green);
+	color: var(--color-text);
+	border: 2px solid var(--color-text);
 	font-weight: bold;
 }
 
 input[type='text'] {
-	border: 2px solid var(--color-accent);
+	border: 2px solid var(--color-accent-primary);
 	border-radius: 7px;
 	outline: none;
 	font-size: 1.6rem;
 	padding: 0.5rem 0.8rem;
-	background-color: var(--color-light-brown);
+	background-color: var(--color-accent-primary-alt);
 }
 
 input[type='text']:focus,

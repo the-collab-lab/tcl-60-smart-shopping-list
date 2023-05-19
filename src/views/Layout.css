@@ -13,7 +13,7 @@
 }
 
 .Layout-header {
-	background-color: var(--color-accent);
+	background-color: var(--color-accent-primary);
 	position: sticky;
 	text-align: center;
 	top: 0;
@@ -33,7 +33,7 @@
 
 .Nav {
 	align-items: stretch;
-	background-color: var(--color-accent);
+	background-color: var(--color-accent-primary);
 	bottom: 0;
 	display: flex;
 	flex-direction: row;
