@@ -68,7 +68,7 @@ button {
 	background-color: var(--color-dark-green);
 	color: var(--color-light-brown);
 	padding: 0.8rem 1.5rem;
-	border: none;
+	border: 2px solid transparent;
 	border-radius: 7px;
 	font-size: 1.5rem;
 	letter-spacing: 0.1rem;
@@ -76,10 +76,15 @@ button {
 	outline: none;
 }
 button:hover,
-button:active,
-button:focus {
+button:active {
 	background-color: var(--color-xdark-green);
-	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+button:focus-visible {
+	background-color: var(--color-light-green);
+	color: var(--color-xdark-green);
+	border: 2px solid var(--color-xdark-green);
+	font-weight: bold;
 }
 
 input[type='text'] {
