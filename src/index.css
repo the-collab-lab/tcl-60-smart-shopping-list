@@ -2,7 +2,7 @@
 	--color-xdark-green: #11310d;
 	--color-dark-green: #1e5b18;
 	--color-med-green: #ccd5ae;
-	--color-light-green: #e9edc9;
+	--color-light-green: #eef1d8;
 	--color-dark-brown: #c9b29b;
 	--color-med-brown: #f2e8ce;
 	--color-light-brown: #fefae0;
@@ -80,4 +80,19 @@ button:active,
 button:focus {
 	background-color: var(--color-xdark-green);
 	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.25);
+}
+
+input[type='text'] {
+	border: 2px solid var(--color-accent);
+	border-radius: 7px;
+	outline: none;
+	font-size: 1.6rem;
+	padding: 0.5rem 0.8rem;
+	background-color: var(--color-light-brown);
+}
+
+input[type='text']:focus,
+input[type='text']:active {
+	border: 2px solid var(--color-text);
+	background-color: var(--color-light-green);
 }
