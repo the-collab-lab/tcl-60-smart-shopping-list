@@ -1,35 +1,37 @@
 :root {
-	--color-black: hsla(220, 13%, 18%, 1);
-	--color-gray-dark: hsla(220, 13%, 25%, 1);
-	--color-white: hsla(220, 13%, 98%, 1);
-	--color-gray-light: hsla(220, 13%, 94%, 1);
-	--color-emerald-green: hsla(168, 92%, 25%, 1);
-	--color-vermillion-green: hsla(168, 92%, 43%, 1);
-	--color-cobalt-blue: hsla(215, 100%, 34%, 1);
-	--color-pastel-blue: hsla(215, 100%, 73%, 1);
-	--color-red: hsl(0, 68%, 42%);
+	--color-dark-green: #11310d;
+	--color-med-green: #1e5b18;
+	--color-light-green: #eef1d8;
+	--color-dark-brown: #c9b29b;
+	--color-med-brown: #f2e8ce;
+	--color-light-brown: #fefae0;
 
-	--color-accent: var(--color-pastel-blue);
-	--color-bg: var(--color-black);
-	--color-bg-well: var(--color-gray-dark);
-	--color-error: var(--color-red);
-	--color-text: var(--color-white);
+	--color-bg: var(--color-med-brown);
+	--color-text: var(--color-dark-green);
+	--color-accent-primary: var(--color-dark-brown);
+	--color-accent-primary-alt: var(--color-light-brown);
+	--color-accent-secondary: var(--color-med-green);
+	--color-accent-secondary-alt: var(--color-light-green);
 }
 
 @media screen and (prefers-color-scheme: light) {
 	:root {
-		--color-accent: var(--color-cobalt-blue);
-		--color-bg: var(--color-white);
-		--color-bg-well: var(--color-gray-light);
-		--color-text: var(--color-black);
+		--color-bg: var(--color-med-brown);
+		--color-text: var(--color-dark-green);
+		--color-accent-primary: var(--color-dark-brown);
+		--color-accent-primary-alt: var(--color-light-brown);
+		--color-accent-secondary: var(--color-med-green);
+		--color-accent-secondary-alt: var(--color-light-green);
 	}
 }
 
 :root.theme-light {
-	--color-accent: var(--color-cobalt-blue);
-	--color-bg: var(--color-white);
-	--color-bg-well: var(--color-gray-light);
-	--color-text: var(--color-black);
+	--color-bg: var(--color-med-brown);
+	--color-text: var(--color-dark-green);
+	--color-accent-primary: var(--color-dark-brown);
+	--color-accent-primary-alt: var(--color-light-brown);
+	--color-accent-secondary: var(--color-med-green);
+	--color-accent-secondary-alt: var(--color-light-green);
 }
 
 *,
@@ -55,8 +57,7 @@ html {
 body {
 	background-color: var(--color-bg);
 	color: var(--color-text);
-	font-family: -apple-system, BlinkMacSystemFont, avenir next, avenir, segoe ui,
-		helvetica neue, helvetica, Ubuntu, roboto, noto, arial, sans-serif;
+	font-family: Poppins, arial, sans-serif;
 	font-size: 1.6rem;
 	line-height: 1.4;
 	margin: 0;
@@ -65,30 +66,44 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
-code {
-	--color-bg: var(--color-gray-dark);
-	--color-text: var(--color-accent);
-
-	background-color: var(--color-bg);
-	border-radius: 4px;
-	color: var(--color-text);
-	display: inline-block;
-	font-family: Menlo, Consolas, Monaco, Liberation Mono, Lucida Console,
-		monospace;
-	font-size: 0.9em;
-	padding: 0.15em 0.15em;
-}
-
-@media screen and (prefers-color-scheme: light) {
-	code {
-		--color-bg: var(--color-gray-light);
-	}
-}
-
-:root.theme-light code {
-	--color-bg: var(--color-gray-light);
-}
-
 ul {
 	padding: 0;
+}
+button {
+	background-color: var(--color-accent-secondary);
+	color: var(--color-accent-primary-alt);
+	padding: 0.8rem 1.5rem;
+	border: 2px solid transparent;
+	border-radius: 7px;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+	outline: none;
+}
+button:hover,
+button:active {
+	background-color: var(--color-text);
+	cursor: pointer;
+}
+
+button:focus-visible {
+	background-color: var(--color-light-green);
+	color: var(--color-text);
+	border: 2px solid var(--color-text);
+	font-weight: bold;
+}
+
+input[type='text'] {
+	border: 2px solid var(--color-accent-primary);
+	border-radius: 7px;
+	outline: none;
+	font-size: 1.6rem;
+	padding: 0.5rem 0.8rem;
+	background-color: var(--color-accent-primary-alt);
+}
+
+input[type='text']:focus,
+input[type='text']:active {
+	border: 2px solid var(--color-text);
+	background-color: var(--color-light-green);
 }

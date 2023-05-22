@@ -6,7 +6,7 @@
 }
 
 .ListItem-checkbox {
-	accent-color: var(--color-accent);
+	accent-color: var(--color-accent-primary);
 }
 
 .ListItem-label {

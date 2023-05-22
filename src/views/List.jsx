@@ -30,6 +30,7 @@ export function List({ data, token }) {
 					<div>
 						<label htmlFor="query">Filter your list</label>
 						<input
+							type="text"
 							id="query"
 							value={query}
 							onChange={handleChange}
