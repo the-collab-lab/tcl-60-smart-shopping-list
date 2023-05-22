@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { addItem } from '../api/firebase';
 import { useNavigate } from 'react-router-dom';
 import './AddItem.css';
+import toast from 'react-hot-toast';
 
 export function AddItem({ data, token }) {
 	const navigate = useNavigate();
@@ -14,12 +15,10 @@ export function AddItem({ data, token }) {
 		itemName: '',
 		daysUntilNextPurchase: '',
 	});
-	const [submissionStatus, setSubmissionStatus] = useState('');
-	const [showMessage, setShowMessage] = useState(false);
 
 	function normalizeName(itemName) {
 		if (!itemName) return '';
-		return itemName.toLowerCase().replace(/[^\p{Letter}\p{Mark}]+/gu, '');
+		return itemName.toLowerCase().replace(/[^\p{Letter}\p{Mark}0-9]+/gu, '');
 	}
 
 	function validateFormData(formData) {
@@ -78,26 +77,22 @@ export function AddItem({ data, token }) {
 
 	async function handleSubmit(event) {
 		event.preventDefault();
-		setShowMessage(true);
 		const validatedData = validateFormData(formData);
 		if (!validatedData.valid) {
-			setSubmissionStatus(validatedData.message);
+			toast.error(validatedData.message);
 		} else {
-			try {
-				await addItem(token, validatedData.data);
-				setSubmissionStatus(`${formData.itemName} has been added to the list`);
+			toast.promise(addItem(token, validatedData.data), {
+				loading: 'Loading',
+				success: `${formData.itemName} has been added to the list`,
+				error: 'An error occurred. Please try again later',
+			});
 
-				// Clear the form after successful submission
-				setFormData({
-					itemName: '',
-					daysUntilNextPurchase: '',
-				});
-			} catch (err) {
-				setSubmissionStatus('An error occurred. Please try again later');
-			}
+			// Clear the form after successful submission
+			setFormData({
+				itemName: '',
+				daysUntilNextPurchase: '',
+			});
 		}
-
-		setTimeout(() => setShowMessage(false), 3000);
 	}
 	if (!token) return <p></p>;
 	return (
@@ -155,7 +150,6 @@ export function AddItem({ data, token }) {
 				</div>
 				<div className="btn">
 					<button>Submit</button>
-					{showMessage ? <p>{submissionStatus}</p> : null}
 				</div>
 			</form>
 		</>
