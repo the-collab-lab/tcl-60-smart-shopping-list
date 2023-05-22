@@ -63,18 +63,17 @@ export function AddItem({ data, token }) {
 		if (!validatedData.valid) {
 			toast.error(validatedData.message);
 		} else {
-			try {
-				await addItem(token, validatedData.data);
-				toast.success(`${formData.itemName} has been added to the list`);
+			toast.promise(addItem(token, validatedData.data), {
+				loading: 'Loading',
+				success: `${formData.itemName} has been added to the list`,
+				error: 'An error occurred. Please try again later',
+			});
 
-				// Clear the form after successful submission
-				setFormData({
-					itemName: '',
-					daysUntilNextPurchase: '',
-				});
-			} catch (err) {
-				toast.error('An error occurred. Please try again later');
-			}
+			// Clear the form after successful submission
+			setFormData({
+				itemName: '',
+				daysUntilNextPurchase: '',
+			});
 		}
 	}
 	if (!token) return <p></p>;
