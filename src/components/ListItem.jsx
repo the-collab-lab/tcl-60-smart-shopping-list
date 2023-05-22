@@ -62,7 +62,9 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 				disabled={checked}
 			/>
 
-			<label htmlFor={name}>{name}</label>
+			<label htmlFor={name}>
+				{name} - {urgency}
+			</label>
 			<button type="button" onClick={openModal}>
 				Delete
 			</button>
