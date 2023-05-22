@@ -1,3 +1,26 @@
+.home {
+	display: flex;
+	flex-direction: column;
+}
+.hero-image {
+	height: 300px;
+}
+.welcome-message {
+	text-align: center;
+}
+.button-container {
+	width: 100%;
+	text-align: center;
+	margin: 0 auto;
+	border-bottom: 2px dotted var(--color-dark-brown);
+	padding-bottom: 30px;
+}
+
+.form-container {
+	margin: 0 auto;
+	text-align: center;
+}
+
 form {
 	margin-top: 30px;
 }

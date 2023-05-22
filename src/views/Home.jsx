@@ -36,21 +36,30 @@ export function Home({ setNewToken, token, setToken }) {
 	}
 	if (token) return <p></p>;
 	return (
-		<div className="Home">
-			<button onClick={setNewToken}>New List</button>
-			<form onSubmit={handleSubmit}>
-				<label htmlFor="existingToken">Enter existing token:</label>
-				<br />
-				<input
-					type="text"
-					id="existingToken"
-					value={existingToken}
-					onChange={handleTokenChange}
-				/>
-				<br />
-				<button className="existing-btn">Join existing list</button>
-				{joiningError && <p>No such list exist</p>}
-			</form>
+		<div className="home">
+			<img className="hero-image" src="./img/hero.jpeg" alt="hero" />
+			<p className="welcome-message">
+				Welcome to Smart Shopping List app - your companion for efficient and
+				organized shopping!
+			</p>
+			<div className="button-container">
+				<button onClick={setNewToken}>Create New List</button>
+			</div>
+			<div className="form-container">
+				<form onSubmit={handleSubmit}>
+					<label htmlFor="existingToken">Enter existing token:</label>
+					<br />
+					<input
+						type="text"
+						id="existingToken"
+						value={existingToken}
+						onChange={handleTokenChange}
+					/>
+					<br />
+					<button className="existing-btn">Join existing list</button>
+					{joiningError && <p>No such list exist</p>}
+				</form>
+			</div>
 		</div>
 	);
 }
