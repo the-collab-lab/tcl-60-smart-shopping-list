@@ -3,6 +3,10 @@
 	display: flex;
 	flex-direction: row;
 	font-size: 1.2em;
+	margin-bottom: 0.6em;
+	background-color: var(--color-light-brown);
+	padding: 1em 0.5em;
+	border-radius: 7px;
 }
 
 .ListItem-checkbox {
@@ -11,4 +15,34 @@
 
 .ListItem-label {
 	margin-left: 0.2em;
+}
+label {
+	padding-inline: 0.3em;
+}
+.ListItem input[type='checkbox']:checked + label {
+	text-decoration: line-through;
+	color: var(--color-accent-primary);
+}
+
+.ListItem input[type='checkbox']:checked {
+	background-color: var(--color-accent-primary);
+}
+
+.ListItem button {
+	text-decoration: none;
+	cursor: pointer;
+	margin-left: auto;
+	padding-left: 1em;
+}
+
+input[type='checkbox'] {
+	position: relative;
+	appearance: none;
+	-webkit-appearance: none;
+	height: 16px;
+	width: 16px;
+	border: 2px solid var(--color-accent-primary);
+	border-radius: 4px;
+	outline: none;
+	cursor: pointer;
 }

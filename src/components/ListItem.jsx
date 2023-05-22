@@ -52,7 +52,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className={`ListItem ${checked ? 'checked' : ''}`}>
 			<input
 				value={name}
 				id={name}

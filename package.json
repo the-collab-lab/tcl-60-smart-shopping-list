@@ -9,6 +9,7 @@
 		"@the-collab-lab/shopping-list-utils": "^2.0.0",
 		"firebase": "^9.17.2",
 		"react": "^18.2.0",
+		"react-copy-to-clipboard": "^5.1.0",
 		"react-dom": "^18.2.0",
     "react-icons": "^4.8.0",
 		"react-modal": "^3.16.1",
