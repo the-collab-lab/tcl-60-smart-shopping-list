@@ -52,7 +52,7 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 	};
 
 	return (
-		<li className="ListItem">
+		<li className={`ListItem ${checked ? 'checked' : ''}`}>
 			<input
 				value={name}
 				id={name}
@@ -62,7 +62,9 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 				disabled={checked}
 			/>
 
-			<label htmlFor={name}>{name}</label>
+			<label htmlFor={name}>
+				{name} - {urgency}
+			</label>
 			<button type="button" onClick={openModal}>
 				Delete
 			</button>

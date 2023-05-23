@@ -1,8 +1,9 @@
 import { ListItem } from '../components';
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-
-// Sorting items for the user to identify what they need to buy according to how urgently they should buy the item
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { FiSearch } from 'react-icons/fi';
+import './List.css';
 
 export function List({ data, token }) {
 	const navigate = useNavigate();
@@ -11,13 +12,16 @@ export function List({ data, token }) {
 		// disable warning that navigate should be a dependency
 		// eslint-disable-next-line
 	}, [token]);
+
 	const [query, setQuery] = useState('');
 	const handleChange = (event) => {
 		setQuery(event.target.value);
 	};
+
 	if (!token) return <p></p>;
+
 	return (
-		<>
+		<div className="list-container">
 			{!data?.length ? (
 				<div>
 					<p>
@@ -28,15 +32,31 @@ export function List({ data, token }) {
 			) : (
 				<>
 					<div>
-						<label htmlFor="query">Filter your list</label>
-						<input
-							type="text"
-							id="query"
-							value={query}
-							onChange={handleChange}
-							name="query"
-						/>
+						<div className="search-bar">
+							<label htmlFor="query" className="filter-label">
+								Filter your list
+							</label>
+							<input
+								type="text"
+								id="query"
+								value={query}
+								onChange={handleChange}
+								name="query"
+							/>
+							<FiSearch className="fi-search-icon" />
+						</div>
 						{query ? <button onClick={() => setQuery('')}>Clear</button> : null}
+					</div>
+					<div className="token-copy">
+						<p>
+							Use the token{' '}
+							<CopyToClipboard text={token}>
+								<em style={{ textDecoration: 'underline', cursor: 'pointer' }}>
+									{token}
+								</em>
+							</CopyToClipboard>{' '}
+							to share your shopping list
+						</p>
 					</div>
 					<ul>
 						{data
@@ -53,15 +73,8 @@ export function List({ data, token }) {
 								/>
 							))}
 					</ul>
-					<div>
-						<p>
-							Use the token{' '}
-							<em style={{ textDecoration: 'underline' }}>{token}</em> to share
-							your shopping list
-						</p>
-					</div>
 				</>
 			)}
-		</>
+		</div>
 	);
 }
