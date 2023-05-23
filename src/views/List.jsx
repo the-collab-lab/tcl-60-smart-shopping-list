@@ -15,6 +15,7 @@ export function List({ data, token }) {
 
 	const [query, setQuery] = useState('');
 	const handleChange = (event) => {
+		console.log('handleChange', event.target.value);
 		setQuery(event.target.value);
 	};
 

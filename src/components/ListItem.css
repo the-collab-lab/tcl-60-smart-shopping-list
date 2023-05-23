@@ -46,3 +46,22 @@ input[type='checkbox'] {
 	outline: none;
 	cursor: pointer;
 }
+/* modal.css */
+
+.btns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btns button {
+	margin: 0;
+}
+
+.btns button:nth-child(1) {
+	margin-left: -2em;
+}
+
+.btns button:nth-child(2) {
+	margin-left: 2em;
+}
