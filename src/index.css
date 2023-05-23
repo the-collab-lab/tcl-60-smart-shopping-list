@@ -1,37 +1,46 @@
 :root {
-	--color-dark-green: #11310d;
-	--color-med-green: #1e5b18;
-	--color-light-green: #eef1d8;
-	--color-dark-brown: #c9b29b;
-	--color-med-brown: #f2e8ce;
-	--color-light-brown: #fefae0;
+	/* light mode colors */
+	--lm-dark-green: #11310d;
+	--lm-med-green: #3f5b37;
+	--lm-light-green: #eef1d8;
+	--lm-dark-brown: #c9ab9b;
+	--lm-med-brown: #f2e4ce;
+	--lm-light-brown: #fefae0;
 
-	--color-bg: var(--color-med-brown);
-	--color-text: var(--color-dark-green);
-	--color-accent-primary: var(--color-dark-brown);
-	--color-accent-primary-alt: var(--color-light-brown);
-	--color-accent-secondary: var(--color-med-green);
-	--color-accent-secondary-alt: var(--color-light-green);
+	/* dark mode colors */
+	--dm-dark-green: #11310d;
+	--dm-med-green: #3f5b37;
+	--dm-light-green: #eef1d8;
+	--dm-dark-brown: #c9ab9b;
+	--dm-med-brown: #f2e4ce;
+	--dm-light-brown: #fefae0;
+
+	--color-bg: var(--lm-med-brown);
+	--color-text: var(--lm-dark-green);
+	--color-accent-primary: var(--lm-dark-brown);
+	--color-accent-primary-alt: var(--lm-light-brown);
+	--color-accent-secondary: var(--lm-med-green);
+	--color-accent-secondary-alt: var(--lm-light-green);
 }
 
 @media screen and (prefers-color-scheme: light) {
 	:root {
-		--color-bg: var(--color-med-brown);
-		--color-text: var(--color-dark-green);
-		--color-accent-primary: var(--color-dark-brown);
-		--color-accent-primary-alt: var(--color-light-brown);
-		--color-accent-secondary: var(--color-med-green);
-		--color-accent-secondary-alt: var(--color-light-green);
+		--color-bg: var(--lm-med-brown);
+		--color-text: var(--lm-dark-green);
+		--color-accent-primary: var(--lm-dark-brown);
+		--color-accent-primary-alt: var(--lm-light-brown);
+		--color-accent-secondary: var(--lm-med-green);
+		--color-accent-secondary-alt: var(--lm-light-green);
 	}
 }
 
 :root.theme-light {
-	--color-bg: var(--color-med-brown);
-	--color-text: var(--color-dark-green);
-	--color-accent-primary: var(--color-dark-brown);
-	--color-accent-primary-alt: var(--color-light-brown);
-	--color-accent-secondary: var(--color-med-green);
-	--color-accent-secondary-alt: var(--color-light-green);
+	--color-bg: var(--lm-med-brown);
+	--color-text: var(--lm-dark-green);
+	--color-accent-primary: var(--lm-dark-brown);
+	--color-accent-primary-alt: var(--lm-light-brown);
+	--color-accent-secondary: var(--lm-med-green);
+	--color-accent-secondary-alt: var(--lm-light-green);
 }
 
 *,
@@ -87,7 +96,7 @@ button:active {
 }
 
 button:focus-visible {
-	background-color: var(--color-light-green);
+	background-color: var(--lm-light-green);
 	color: var(--color-text);
 	border: 2px solid var(--color-text);
 	font-weight: bold;
@@ -106,5 +115,5 @@ input[type='text'] {
 input[type='text']:focus,
 input[type='text']:active {
 	border: 2px solid var(--color-text);
-	background-color: var(--color-light-green);
+	background-color: var(--lm-light-green);
 }
