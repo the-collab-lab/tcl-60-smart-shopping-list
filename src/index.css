@@ -9,11 +9,11 @@
 
 	/* dark mode colors */
 	--dm-dark-green: #11310d;
-	--dm-med-green: #3f5b37;
-	--dm-light-green: #eef1d8;
-	--dm-dark-brown: #c9ab9b;
-	--dm-med-brown: #f2e4ce;
-	--dm-light-brown: #fefae0;
+	--dm-med-green: #475b41;
+	--dm-light-green: #7f906b;
+	--dm-dark-brown: #403027;
+	--dm-med-brown: #dec4b6;
+	--dm-light-brown: #fffbe0;
 
 	--color-bg: var(--lm-med-brown);
 	--color-text: var(--lm-dark-green);
@@ -41,6 +41,26 @@
 	--color-accent-primary-alt: var(--lm-light-brown);
 	--color-accent-secondary: var(--lm-med-green);
 	--color-accent-secondary-alt: var(--lm-light-green);
+}
+
+@media screen and (prefers-color-scheme: dark) {
+	:root {
+		--color-bg: var(--dm-med-green);
+		--color-text: var(--dm-light-brown);
+		--color-accent-primary: var(--dm-light-green);
+		--color-accent-primary-alt: var(--dm-dark-green);
+		--color-accent-secondary: var(--dm-med-brown);
+		--color-accent-secondary-alt: var(--dm-dark-brown);
+	}
+}
+
+:root.theme-dark {
+	--color-bg: var(--dm-med-green);
+	--color-text: var(--dm-light-brown);
+	--color-accent-primary: var(--dm-light-green);
+	--color-accent-primary-alt: var(--dm-dark-green);
+	--color-accent-secondary: var(--dm-med-brown);
+	--color-accent-secondary-alt: var(--dm-dark-brown);
 }
 
 *,
