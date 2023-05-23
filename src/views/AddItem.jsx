@@ -102,6 +102,7 @@ export function AddItem({ data, token }) {
 						value="7"
 						checked={formData.daysUntilNextPurchase === '7'}
 						onChange={handleChange}
+						// tabindex="0"
 					/>
 					<label htmlFor="sevenDays" id="denote" className="denote">
 						Soon
