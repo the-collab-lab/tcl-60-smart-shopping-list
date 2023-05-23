@@ -13,6 +13,7 @@
 	top: 35px;
 	cursor: pointer;
 	left: -20%;
+	visibility: hidden;
 }
 .radio:hover {
 	background-color: #1e5b18;
@@ -24,11 +25,16 @@
 	border-radius: 5px;
 	padding: 14px;
 	width: 60%;
+	cursor: pointer;
 }
-.addbg {
-	background-color: yellow;
+.denote:hover {
+	background-color: #eef1d8;
 }
 .searchname {
+	border: 3px solid #c9b29b;
+	border-radius: 5px;
+	padding: 14px;
+	width: 60%;
 	margin-top: 12px;
 }
 .searchname:focus-visible {
@@ -39,19 +45,17 @@
 button {
 	margin-top: 14px;
 	justify-content: center;
-	position: relative;
-	left: 3%;
 	cursor: pointer;
 }
 .chooseform {
 	text-align: center;
 }
-.changebg {
-	background-color: pink;
-}
-.selected {
-	background-color: green;
-}
+
 .choose input[type='radio']:checked + label {
 	background-color: #eef1d8;
+	color: #1e5b18;
+	font-weight: 300;
+	outline: none !important;
+	border: 1px solid #eef1d8 !important;
+	box-shadow: 0 0 4px;
 }
