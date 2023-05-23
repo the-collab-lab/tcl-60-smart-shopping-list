@@ -54,8 +54,7 @@ button {
 .choose input[type='radio']:checked + label {
 	background-color: #eef1d8;
 	color: #1e5b18;
-	font-weight: 300;
 	outline: none !important;
-	border: 1px solid #eef1d8 !important;
+	border: 3px solid #eef1d8 !important;
 	box-shadow: 0 0 4px;
 }
