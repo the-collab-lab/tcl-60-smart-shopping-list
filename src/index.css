@@ -75,6 +75,10 @@ body {
 	-moz-osx-font-smoothing: grayscale;
 }
 
+header {
+	z-index: 100;
+}
+
 ul {
 	padding: 0;
 }
