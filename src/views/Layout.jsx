@@ -20,7 +20,7 @@ export function Layout({ token }) {
 					{token ? (
 						<>
 							<button className="switch-btn" onClick={handleSwitchToken}>
-								Switch Token
+								Switch List
 							</button>
 							<NavLink to="/list" className="Nav-link">
 								List
