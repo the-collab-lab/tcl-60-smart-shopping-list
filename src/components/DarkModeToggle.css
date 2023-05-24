@@ -1,8 +1,9 @@
 #switch {
 	position: relative;
-	display: inline-block;
-	width: 90px;
-	height: 50px;
+	display: block;
+	width: 60px;
+	height: 30px;
+	margin: 0 auto;
 }
 #switch input {
 	width: 0;
@@ -28,18 +29,18 @@
 #slider svg {
 	position: absolute;
 	z-index: 120;
-	height: 20px;
-	width: 20px;
+	height: 15px;
+	width: 15px;
 }
 #slider svg[data-icon='light'] {
 	color: var(--color-switcher-light);
 
-	left: 15px;
+	left: 8px;
 }
 
 #slider svg[data-icon='dark'] {
 	color: var(--color-switcher-dark);
-	right: 13px;
+	right: 9px;
 }
 
 #slider:before {
@@ -48,16 +49,16 @@
 	background-color: var(--color-text);
 	z-index: 110;
 	content: '';
-	height: 40px;
-	width: 40px;
+	height: 22px;
+	width: 22px;
 	left: 5px;
-	bottom: 5px;
+	bottom: 4px;
 	transition: transform 0.4s ease-out;
 	border-radius: 50%;
 }
 input:checked + #slider:before {
 	/* background-color: var(--color-accent-primary-alt); */
-	transform: translateX(41px);
+	transform: translateX(26px);
 	content: '';
 }
 

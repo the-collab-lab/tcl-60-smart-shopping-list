@@ -29,6 +29,11 @@
 	color: var(--color-text);
 	margin: 1rem 0;
 }
+#dark-mode-switcher {
+	position: absolute;
+	right: 20px;
+	top: 8px;
+}
 
 .Layout-main {
 	margin: 0 auto;

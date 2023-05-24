@@ -14,7 +14,9 @@ export function Layout({ token }) {
 			<div className="Layout" id={isChecked ? 'theme-dark' : 'theme-light'}>
 				<header className="Layout-header">
 					<h1>Smart shopping list</h1>
-					<DarkMode isChecked={isChecked} onChange={onChange} />
+					<div id="dark-mode-switcher">
+						<DarkMode isChecked={isChecked} onChange={onChange} />
+					</div>
 				</header>
 				<main className="Layout-main">
 					<Outlet />
