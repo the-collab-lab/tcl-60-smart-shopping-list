@@ -1,5 +1,6 @@
 .ListItem {
-	align-items: baseline;
+	width: 400px;
+	align-items: center;
 	display: flex;
 	flex-direction: row;
 	font-size: 1.2em;
@@ -11,10 +12,12 @@
 
 .ListItem-checkbox {
 	accent-color: var(--color-accent-primary);
+	min-width: 11.875px;
 }
 
 .ListItem-label {
 	margin-left: 0.2em;
+	width: 360px;
 }
 label {
 	padding-inline: 0.3em;
@@ -28,11 +31,10 @@ label {
 	background-color: var(--color-accent-primary);
 }
 
-.ListItem button {
-	text-decoration: none;
+.bin {
 	cursor: pointer;
 	margin-left: auto;
-	padding-left: 1em;
+	min-width: 24px;
 }
 
 input[type='checkbox'] {
