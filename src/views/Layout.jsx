@@ -3,6 +3,10 @@ import { Outlet, NavLink } from 'react-router-dom';
 import './Layout.css';
 
 export function Layout({ token }) {
+	const handleSwitchToken = () => {
+		localStorage.removeItem('tcl-shopping-list-token');
+		window.location.replace('/');
+	};
 	return (
 		<>
 			<div className="Layout">
@@ -13,11 +17,11 @@ export function Layout({ token }) {
 					<Outlet />
 				</main>
 				<nav className="Nav">
-					<NavLink to="/" className="Nav-link">
-						Home
-					</NavLink>
 					{token ? (
 						<>
+							<button className="switch-btn" onClick={handleSwitchToken}>
+								Switch Token
+							</button>
 							<NavLink to="/list" className="Nav-link">
 								List
 							</NavLink>
@@ -25,7 +29,11 @@ export function Layout({ token }) {
 								Add Item
 							</NavLink>
 						</>
-					) : null}
+					) : (
+						<NavLink to="/" className="Nav-link">
+							Home
+						</NavLink>
+					)}
 				</nav>
 			</div>
 		</>
