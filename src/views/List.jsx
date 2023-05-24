@@ -32,11 +32,11 @@ export function List({ data, token }) {
 				</div>
 			) : (
 				<>
-					<div>
+					<div className="search-filter-container">
+						<label htmlFor="query" className="filter-label">
+							Filter your list
+						</label>
 						<div className="search-bar">
-							<label htmlFor="query" className="filter-label">
-								Filter your list
-							</label>
 							<input
 								type="text"
 								id="query"

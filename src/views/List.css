@@ -15,16 +15,14 @@
 	padding: 0.5rem 0.8rem;
 	width: 350px;
 	border-radius: 7px;
-	z-index: -1;
 }
 
-.filter-label {
-	position: absolute;
-	top: 50%;
-	left: 0.8rem;
-	transform: translateY(-50%);
-	pointer-events: none;
-	color: #999;
+.search-filter-container {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
 }
 
 .search-bar .fi-search-icon {
