@@ -24,6 +24,9 @@ export function Layout({ token }) {
 							<NavLink to="/add-item" className="Nav-link">
 								Add Item
 							</NavLink>
+							<NavLink to="/switch-list" className="Nav-link">
+								Switch List
+							</NavLink>
 						</>
 					) : null}
 				</nav>
