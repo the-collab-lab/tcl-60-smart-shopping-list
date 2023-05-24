@@ -9,7 +9,7 @@ export default function SwitchList() {
 			localStorage.removeItem('tcl-shopping-list-token');
 			navigate('/');
 		}, 3000);
-	}, [navigate]);
+	}, []);
 
 	return <p>Redirecting to home...</p>;
 }
