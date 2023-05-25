@@ -2,7 +2,7 @@ import { updateItem } from '../api/firebase';
 import './ListItem.css';
 import { useState, useEffect } from 'react';
 import { deleteItem } from '../api/firebase';
-
+import { ImBin } from 'react-icons/im';
 import Modal from 'react-modal';
 Modal.setAppElement('#root');
 
@@ -51,6 +51,17 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 		}
 	};
 
+	const modalStyle = {
+		content: {
+			textAlign: 'center',
+			color: '#11310d',
+			width: '400px',
+			height: '270px',
+			margin: 'auto',
+		},
+		overlay: {},
+	};
+
 	return (
 		<li className={`ListItem ${checked ? 'checked' : ''}`}>
 			<input
@@ -62,25 +73,21 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 				disabled={checked}
 			/>
 
-			<label htmlFor={name}>
+			<label className="ListItem-label" htmlFor={name}>
 				{name} - {urgency}
 			</label>
-			<button type="button" onClick={openModal}>
-				Delete
-			</button>
+
+			<ImBin className="bin" onClick={openModal} />
+
 			{/* modal  */}
 			<Modal
-				style={{
-					content: {
-						color: 'black', // Add the desired color here
-					},
-				}}
+				style={modalStyle}
 				isOpen={modalStatus}
 				onRequestClose={closeModal}
 			>
 				<h2>Are you sure you want to delete?</h2>
 				<p>Press confirm if yes, press cancel to go back</p>
-				<div>
+				<div className="btns">
 					<button onClick={handleDelete}>Confirm</button>
 					<button onClick={closeModal}>Cancel</button>
 				</div>
