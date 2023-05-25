@@ -4,11 +4,18 @@ import './Layout.css';
 import { DarkMode } from '../components/DarkModeToggle';
 
 export function Layout({ token }) {
+
+	const handleSwitchToken = () => {
+		localStorage.removeItem('tcl-shopping-list-token');
+		window.location.replace('/');
+  }
+  
 	const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
 	const [isChecked, setChecked] = useState(prefersDarkMode.matches);
 	const onChange = () => {
 		setChecked((prevChecked) => !prevChecked);
 	};
+  
 	return (
 		<>
 			<div className="Layout" id={isChecked ? 'theme-dark' : 'theme-light'}>
@@ -22,11 +29,11 @@ export function Layout({ token }) {
 					<Outlet />
 				</main>
 				<nav className="Nav">
-					<NavLink to="/" className="Nav-link">
-						Home
-					</NavLink>
 					{token ? (
 						<>
+							<button className="switch-btn" onClick={handleSwitchToken}>
+								Switch List
+							</button>
 							<NavLink to="/list" className="Nav-link">
 								List
 							</NavLink>
@@ -34,7 +41,11 @@ export function Layout({ token }) {
 								Add Item
 							</NavLink>
 						</>
-					) : null}
+					) : (
+						<NavLink to="/" className="Nav-link">
+							Home
+						</NavLink>
+					)}
 				</nav>
 			</div>
 		</>
