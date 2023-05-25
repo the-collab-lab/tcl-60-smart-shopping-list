@@ -41,6 +41,10 @@ label {
 	min-width: 24px;
 }
 
+.bin:hover {
+	color: red;
+}
+
 input[type='checkbox'] {
 	position: relative;
 	appearance: none;
