@@ -1,20 +1,23 @@
 .ListItem {
-	align-items: baseline;
+	width: 400px;
+	align-items: center;
 	display: flex;
 	flex-direction: row;
 	font-size: 1.2em;
 	margin-bottom: 0.6em;
-	background-color: var(--color-light-brown);
+	background-color: var(--color-accent-primary-alt);
 	padding: 1em 0.5em;
 	border-radius: 7px;
 }
 
 .ListItem-checkbox {
 	accent-color: var(--color-accent-primary);
+	min-width: 11.875px;
 }
 
 .ListItem-label {
 	margin-left: 0.2em;
+	width: 360px;
 }
 label {
 	padding-inline: 0.3em;
@@ -28,11 +31,10 @@ label {
 	background-color: var(--color-accent-primary);
 }
 
-.ListItem button {
-	text-decoration: none;
+.bin {
 	cursor: pointer;
 	margin-left: auto;
-	padding-left: 1em;
+	min-width: 24px;
 }
 
 input[type='checkbox'] {
@@ -45,4 +47,23 @@ input[type='checkbox'] {
 	border-radius: 4px;
 	outline: none;
 	cursor: pointer;
+}
+/* modal.css */
+
+.btns {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.btns button {
+	margin: 0;
+}
+
+.btns button:nth-child(1) {
+	margin-left: -2em;
+}
+
+.btns button:nth-child(2) {
+	margin-left: 2em;
 }

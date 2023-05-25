@@ -15,6 +15,7 @@ export function List({ data, token }) {
 
 	const [query, setQuery] = useState('');
 	const handleChange = (event) => {
+		console.log('handleChange', event.target.value);
 		setQuery(event.target.value);
 	};
 
@@ -31,11 +32,11 @@ export function List({ data, token }) {
 				</div>
 			) : (
 				<>
-					<div>
+					<div className="search-filter-container">
+						<label htmlFor="query" className="filter-label">
+							Filter your list
+						</label>
 						<div className="search-bar">
-							<label htmlFor="query" className="filter-label">
-								Filter your list
-							</label>
 							<input
 								type="text"
 								id="query"
