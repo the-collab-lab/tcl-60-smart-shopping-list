@@ -4,7 +4,7 @@
 	flex-direction: row;
 	font-size: 1.2em;
 	margin-bottom: 0.6em;
-	background-color: var(--color-light-brown);
+	background-color: var(--color-accent-primary-alt);
 	padding: 1em 0.5em;
 	border-radius: 7px;
 }
