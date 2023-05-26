@@ -28,7 +28,6 @@
 	align-items: center;
 	text-align: left;
 	width: 100%;
-	border: 1px solid red;
 }
 .Layout-header h1 {
 	color: var(--color-text);
