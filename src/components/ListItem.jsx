@@ -74,7 +74,8 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 			/>
 
 			<label className="ListItem-label" htmlFor={name}>
-				{name} - {urgency}
+				<span class="list-item-name">{name}</span>
+				<span class="list-item-urgency">{urgency}</span>
 			</label>
 
 			<ImBin className="bin" onClick={openModal} />

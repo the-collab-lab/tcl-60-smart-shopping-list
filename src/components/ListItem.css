@@ -1,5 +1,5 @@
 .ListItem {
-	width: 400px;
+	width: 100%;
 	align-items: center;
 	display: flex;
 	flex-direction: row;
@@ -17,7 +17,7 @@
 
 .ListItem-label {
 	margin-left: 0.2em;
-	width: 360px;
+	width: 80%;
 }
 label {
 	padding-inline: 0.3em;
@@ -29,6 +29,21 @@ label {
 
 .ListItem input[type='checkbox']:checked {
 	background-color: var(--color-accent-primary);
+}
+
+.ListItem:has(input[type='checkbox']:focus-visible) {
+	text-decoration: line-through;
+	color: var(--color-accent-primary);
+	border: 2px solid var(--color-text);
+}
+
+.list-item-name {
+	display: block;
+}
+.list-item-urgency {
+	display: block;
+	text-transform: uppercase;
+	font-size: 1.4rem;
 }
 
 .bin {
