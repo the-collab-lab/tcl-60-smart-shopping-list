@@ -112,5 +112,5 @@ input[type='text'] {
 input[type='text']:focus,
 input[type='text']:active {
 	border: 2px solid var(--color-text);
-	background-color: var(--lm-light-green);
+	background-color: var(--color-accent-secondary-alt);
 }
