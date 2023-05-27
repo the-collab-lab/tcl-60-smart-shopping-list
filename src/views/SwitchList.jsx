@@ -1,15 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export default function SwitchList() {
+export default function SwitchList({clearListToken}) {
 	const navigate = useNavigate();
-
+    
 	React.useEffect(() => {
 		setTimeout(() => {
-			localStorage.removeItem('tcl-shopping-list-token');
+			clearListToken()
 			navigate('/');
-		}, 3000);
-	}, []);
+		}, 1000);
+	}, [navigate]);
 
-	return <p>Redirecting to home...</p>;
+	return <p style={{textAlign: "center"}}>Redirecting to home...</p>;
 }
