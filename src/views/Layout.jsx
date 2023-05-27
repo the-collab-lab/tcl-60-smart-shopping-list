@@ -13,22 +13,21 @@ export function Layout({ token }) {
 					<Outlet />
 				</main>
 				<nav className="Nav">
-					<NavLink to="/" className="Nav-link">
-						Home
-					</NavLink>
 					{token ? (
 						<>
+							<NavLink to="/switch-list" className="Nav-link">
+								Switch List
+							</NavLink>
 							<NavLink to="/list" className="Nav-link">
 								List
 							</NavLink>
 							<NavLink to="/add-item" className="Nav-link">
 								Add Item
 							</NavLink>
-							<NavLink to="/switch-list" className="Nav-link">
-								Switch List
-							</NavLink>
 						</>
-					) : null}
+					) : <NavLink to="/" className="Nav-link">
+						Home
+					</NavLink>}
 				</nav>
 			</div>
 		</>
