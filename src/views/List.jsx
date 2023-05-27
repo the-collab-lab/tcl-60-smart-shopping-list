@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiSearch } from 'react-icons/fi';
+import { ImPaste } from 'react-icons/im';
 import './List.css';
 
 export function List({ data, token }) {
@@ -56,7 +57,10 @@ export function List({ data, token }) {
 									{token}
 								</em>
 							</CopyToClipboard>{' '}
-							to share your shopping list
+							to share your shopping list{' '}
+							<CopyToClipboard text={token}>
+								<ImPaste className="paste-icon" />
+							</CopyToClipboard>
 						</p>
 					</div>
 					<ul>

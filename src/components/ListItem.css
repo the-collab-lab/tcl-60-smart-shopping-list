@@ -10,6 +10,10 @@
 	border-radius: 7px;
 }
 
+.ListItem:hover {
+	transform: scale(1.05);
+}
+
 .ListItem-checkbox {
 	accent-color: var(--color-accent-primary);
 	min-width: 11.875px;
@@ -50,6 +54,10 @@ label {
 	cursor: pointer;
 	margin-left: auto;
 	min-width: 24px;
+}
+
+.bin:hover {
+	color: red;
 }
 
 input[type='checkbox'] {

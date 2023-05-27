@@ -38,6 +38,10 @@
 	margin-bottom: 0;
 }
 
+.paste-icon:hover {
+	cursor: pointer;
+}
+
 ul {
 	width: 100%;
 	display: flex;
