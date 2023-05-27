@@ -62,7 +62,7 @@ export function App() {
 					className: '',
 					duration: 5000,
 					style: {
-						marginBottom: '33px',
+						marginBottom: '9rem',
 						background: '#FEFAE0',
 						color: '#13310D',
 					},

@@ -58,23 +58,6 @@ export function AddItem({ data, token }) {
 		});
 	}
 
-	const radioButtons = document.querySelectorAll('.denote');
-	const labels = document.querySelectorAll('denote');
-
-	radioButtons.forEach((radioButton) => {
-		radioButton.addEventListener('change', () => {
-			labels.forEach((label) => {
-				if (label.htmlFor === radioButton.id) {
-					if (radioButton.checked) {
-						label.classList.add('changebg'); // Add the class if the radio button is selected
-					} else {
-						label.classList.remove('changebg'); // Remove the class if the radio button is not selected
-					}
-				}
-			});
-		});
-	});
-
 	async function handleSubmit(event) {
 		event.preventDefault();
 		const validatedData = validateFormData(formData);
@@ -113,19 +96,20 @@ export function AddItem({ data, token }) {
 				<div className="choose">
 					<input
 						className="radio"
-						id="sevenDays datenday"
+						id="sevenDays"
 						name="daysUntilNextPurchase"
 						type="radio"
 						value="7"
 						checked={formData.daysUntilNextPurchase === '7'}
 						onChange={handleChange}
+						// tabindex="0"
 					/>
 					<label htmlFor="sevenDays" id="denote" className="denote">
 						Soon
 					</label>
 					<input
 						className="radio"
-						id="forteenDays datenday"
+						id="forteenDays"
 						name="daysUntilNextPurchase"
 						type="radio"
 						value="14"
@@ -137,7 +121,7 @@ export function AddItem({ data, token }) {
 					</label>
 					<input
 						className="radio"
-						id="thirtyDays datenday"
+						id="thirtyDays"
 						name="daysUntilNextPurchase"
 						type="radio"
 						value="30"

@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { FiSearch } from 'react-icons/fi';
+import { ImPaste } from 'react-icons/im';
 import './List.css';
 
 export function List({ data, token }) {
@@ -15,6 +16,7 @@ export function List({ data, token }) {
 
 	const [query, setQuery] = useState('');
 	const handleChange = (event) => {
+		console.log('handleChange', event.target.value);
 		setQuery(event.target.value);
 	};
 
@@ -31,11 +33,11 @@ export function List({ data, token }) {
 				</div>
 			) : (
 				<>
-					<div>
+					<div className="search-filter-container">
+						<label htmlFor="query" className="filter-label">
+							Filter your list
+						</label>
 						<div className="search-bar">
-							<label htmlFor="query" className="filter-label">
-								Filter your list
-							</label>
 							<input
 								type="text"
 								id="query"
@@ -55,7 +57,10 @@ export function List({ data, token }) {
 									{token}
 								</em>
 							</CopyToClipboard>{' '}
-							to share your shopping list
+							<CopyToClipboard text={token}>
+								<ImPaste className="paste-icon" />
+							</CopyToClipboard>{' '}
+							to share your shopping list{' '}
 						</p>
 					</div>
 					<ul>
