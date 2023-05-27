@@ -34,6 +34,9 @@
 	width: 100%;
 }
 
+.token-copy {
+	text-align: center;
+}
 .token-copy p {
 	margin-bottom: 0;
 }

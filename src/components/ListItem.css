@@ -8,10 +8,12 @@
 	background-color: var(--color-accent-primary-alt);
 	padding: 1em 0.5em;
 	border-radius: 7px;
+	transition: transform 0.2s ease-in-out;
 }
 
 .ListItem:hover {
 	transform: scale(1.05);
+	transition: transform 0.2s ease-in-out;
 }
 
 .ListItem-checkbox {

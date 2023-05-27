@@ -57,10 +57,10 @@ export function List({ data, token }) {
 									{token}
 								</em>
 							</CopyToClipboard>{' '}
-							to share your shopping list{' '}
 							<CopyToClipboard text={token}>
 								<ImPaste className="paste-icon" />
-							</CopyToClipboard>
+							</CopyToClipboard>{' '}
+							to share your shopping list{' '}
 						</p>
 					</div>
 					<ul>
