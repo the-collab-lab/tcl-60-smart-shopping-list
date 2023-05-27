@@ -64,7 +64,7 @@ input[type='checkbox'] {
 	cursor: pointer;
 }
 /* modal.css */
-
+/*
 .btns {
 	display: flex;
 	justify-content: center;
@@ -81,4 +81,50 @@ input[type='checkbox'] {
 
 .btns button:nth-child(2) {
 	margin-left: 2em;
+} */
+.modal-delete {
+	text-align: center;
+	color: #11310d;
+	width: 80vw;
+	max-width: 400px;
+	height: 50vh;
+	max-height: 270px;
+	margin: auto;
+	position: absolute;
+	top: 40px;
+	left: 40px;
+	right: 40px;
+	bottom: 40px;
+	border: 2px solid #3f5b37;
+	background: #eef1d8;
+	overflow: auto;
+	-webkit-overflow-scrolling: touch;
+	border-radius: 4px;
+	outline: none;
+	padding: 20px;
+}
+
+.modal-delete button {
+	background-color: #3f5b37;
+	color: #fefae0;
+	padding: 0.8rem 1.5rem;
+	border: 2px solid transparent;
+	border-radius: 7px;
+	font-size: 1.5rem;
+	letter-spacing: 0.1rem;
+	text-transform: uppercase;
+	outline: none;
+	margin-right: 20px;
+}
+.modal-delete button:hover,
+.modal-delete button:active {
+	background-color: #11310d;
+	cursor: pointer;
+}
+
+.modal-delete button:focus-visible {
+	background-color: #fefae0;
+	color: #11310d;
+	border: 2px solid #11310d;
+	font-weight: bold;
 }
