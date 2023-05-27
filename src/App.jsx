@@ -24,6 +24,10 @@ export function App() {
 	function setNewToken() {
 		setListToken(generateToken());
 	}
+	
+	function clearListToken() {
+		setListToken(null);
+	}
 
 	useEffect(() => {
 		if (!listToken) return;
@@ -86,7 +90,7 @@ export function App() {
 								/>
 							}
 						/>
-						<Route path="/switch-list" element={<SwitchList />} />
+						<Route path="/switch-list" element={<SwitchList clearListToken={clearListToken}/>} />
 						<Route
 							path="/list"
 							element={<List data={data} token={listToken} />}
