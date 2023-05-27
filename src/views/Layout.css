@@ -22,16 +22,22 @@
 .Layout-header {
 	background-color: var(--color-accent-primary);
 	position: sticky;
-	text-align: center;
 	top: 0;
+	min-height: 7rem;
+	display: flex;
+	align-items: center;
+	text-align: left;
+	width: 100%;
 }
 .Layout-header h1 {
 	color: var(--color-text);
-	margin: 1rem 0;
+	margin: 1rem;
+	font-size: 2rem;
 }
+
 #dark-mode-switcher {
 	position: absolute;
-	right: 20px;
+	right: 10px;
 	top: 8px;
 }
 
@@ -44,20 +50,21 @@
 }
 
 .Nav {
-	align-items: stretch;
 	background-color: var(--color-accent-primary);
 	bottom: 0;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
+	align-items: center;
 	margin-top: auto;
 	position: sticky;
-	padding: 1rem;
+	padding: 0;
+	min-height: 7rem;
 }
 
 .Nav-link {
 	color: var(--color-text);
-	font-size: 1.45em;
+	font-size: 1.2em;
 	flex: 0 1 auto;
 	padding: 0.8rem;
 	text-align: center;
@@ -68,6 +75,50 @@
 .Nav-link.active {
 	font-weight: bold;
 }
-.Nav-link:focus-visible {
+.switch-btn {
+	background: none;
+	margin-top: 0;
+	text-transform: none;
+	color: var(--color-text);
+	text-decoration: none;
+	outline: none;
+}
+.switch-btn:hover {
+	background-color: initial;
+}
+
+.Nav-link:focus-visible,
+.switch-btn:focus-visible {
 	text-decoration: underline;
+	background-color: initial;
+	border: none;
+	font-weight: bold;
+}
+
+@media (min-width: 400px) {
+	.Layout-header h1 {
+		font-size: 2.5rem;
+		margin: 1rem 1.5rem;
+	}
+	.Nav-link {
+		font-size: 1.45em;
+	}
+	.Nav {
+		align-items: stretch;
+		padding: 1rem;
+	}
+}
+@media (min-width: 600px) {
+	.Layout-header {
+		justify-content: center;
+	}
+	.Layout-header h1 {
+		font-size: 3rem;
+	}
+}
+@media (min-width: 768px) {
+	.Layout-header h1 {
+		text-align: center;
+		font-size: 3rem;
+	}
 }

@@ -99,23 +99,6 @@ button:focus-visible {
 	font-weight: bold;
 }
 
-.switch-btn {
-	background: none;
-	margin-top: 0;
-	text-transform: none;
-	color: var(--color-text);
-	font-family: Poppins, arial, sans-serif;
-	font-size: 1.45em;
-	flex: 0 1 auto;
-	padding: 0.8rem;
-	text-align: center;
-	text-decoration: none;
-	outline: none;
-}
-.switch-btn:hover {
-	background-color: initial;
-}
-
 input[type='text'] {
 	border: 2px solid var(--color-accent-primary);
 	border-radius: 7px;
@@ -129,5 +112,5 @@ input[type='text'] {
 input[type='text']:focus,
 input[type='text']:active {
 	border: 2px solid var(--color-text);
-	background-color: var(--lm-light-green);
+	background-color: var(--color-accent-secondary-alt);
 }

@@ -51,17 +51,6 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 		}
 	};
 
-	const modalStyle = {
-		content: {
-			textAlign: 'center',
-			color: '#11310d',
-			width: '400px',
-			height: '270px',
-			margin: 'auto',
-		},
-		overlay: {},
-	};
-
 	return (
 		<li className={`ListItem ${checked ? 'checked' : ''}`}>
 			<input
@@ -74,14 +63,15 @@ export function ListItem({ name, itemId, dateLastPurchased, urgency }) {
 			/>
 
 			<label className="ListItem-label" htmlFor={name}>
-				{name} - {urgency}
+				<span class="list-item-name">{name}</span>
+				<span class="list-item-urgency">{urgency}</span>
 			</label>
 
 			<ImBin className="bin" onClick={openModal} />
 
 			{/* modal  */}
 			<Modal
-				style={modalStyle}
+				className="modal-delete"
 				isOpen={modalStatus}
 				onRequestClose={closeModal}
 			>
