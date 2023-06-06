@@ -6,6 +6,7 @@ import { AddItem, Home, Layout, List } from './views';
 import { getItemData, streamListItems } from './api';
 import { useStateWithStorage } from './utils';
 import { generateToken } from '@the-collab-lab/shopping-list-utils';
+import SwitchList from './views/SwitchList';
 
 export function App() {
 	const [data, setData] = useState([]);
@@ -22,6 +23,10 @@ export function App() {
 
 	function setNewToken() {
 		setListToken(generateToken());
+	}
+	
+	function clearListToken() {
+		setListToken(null);
 	}
 
 	useEffect(() => {
@@ -85,6 +90,7 @@ export function App() {
 								/>
 							}
 						/>
+						<Route path="/switch-list" element={<SwitchList clearListToken={clearListToken}/>} />
 						<Route
 							path="/list"
 							element={<List data={data} token={listToken} />}
