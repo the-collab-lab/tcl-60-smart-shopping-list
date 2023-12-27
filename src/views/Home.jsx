@@ -2,6 +2,7 @@ import './Home.css';
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { checkItem } from '../api/firebase';
+import { ArchivalNoticeModal } from '@the-collab-lab/shopping-list-utils';
 
 export function Home({ setNewToken, token, setToken }) {
 	const [existingToken, setExistingToken] = useState('');
@@ -43,7 +44,9 @@ export function Home({ setNewToken, token, setToken }) {
 				organized shopping!
 			</p>
 			<div className="button-container">
-				<button onClick={setNewToken}>Create New List</button>
+				<button onClick={() => console.log('Creating new lists is disabled')}>
+					Create New List
+				</button>
 			</div>
 			<div className="form-container">
 				<form onSubmit={handleSubmit}>
@@ -60,6 +63,7 @@ export function Home({ setNewToken, token, setToken }) {
 					{joiningError && <p>No such list exist</p>}
 				</form>
 			</div>
+			<ArchivalNoticeModal />
 		</div>
 	);
 }
